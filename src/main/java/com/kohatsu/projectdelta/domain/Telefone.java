@@ -27,17 +27,23 @@ public class Telefone implements Serializable{
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name="profissional_id")
+	private Profissional profissional;
+	
 	public Telefone() {
 		super();
 	}
 
 
-	public Telefone(Integer id, String ddd, String numero, Cliente cliente) {
+	public Telefone(Integer id, String ddd, String numero, Cliente cliente, Profissional profissional) {
 		super();
 		this.id = id;
 		this.ddd = ddd;
 		this.numero = numero;
 		this.cliente = cliente;
+		this.profissional = profissional;
 	}
 
 
@@ -70,6 +76,21 @@ public class Telefone implements Serializable{
 		this.numero = numero;
 	}
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+	
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	public Profissional getProfissional() {
+		return profissional;
+	}
+	
+	public void setProfissional(Profissional profissional) {
+		this.profissional = profissional;
+	}
 
 	@Override
 	public int hashCode() {
