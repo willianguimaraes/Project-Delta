@@ -33,8 +33,9 @@ public class Profissional implements Serializable{
 	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	/*@JoinColumn(name="servico_id")
-	private Servico servico;*/
+	@JsonManagedReference
+	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
+	private List<Servico> servicos = new ArrayList<>();
 	
 	
 	public Profissional() {
@@ -47,7 +48,6 @@ public class Profissional implements Serializable{
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
-		/*this.servico = servico;*/
 	}
 
 
@@ -104,6 +104,14 @@ public class Profissional implements Serializable{
 	
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
+	}
+	
+	public List<Servico> getServicos() {
+		return servicos;
+	}
+	
+	public void setServicos(List<Servico> servicos) {
+		this.servicos = servicos;
 	}
 	
 	

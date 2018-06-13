@@ -1,5 +1,8 @@
 package com.kohatsu.projectdelta.resources;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kohatsu.projectdelta.domain.Servico;
+import com.kohatsu.projectdelta.dto.ServicoDTO;
 /*import com.kohatsu.projectdelta.dto.ServicoDTO;*/
 import com.kohatsu.projectdelta.services.ServicoService;
 
@@ -27,7 +31,7 @@ public class ServicoResource {
 		
 	}
 	
-	/*@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<ServicoDTO>> findAll() {
 		
 		List<Servico> list = service.findAll();
@@ -36,6 +40,6 @@ public class ServicoResource {
 		
 		return ResponseEntity.ok().body(listDto);
 		
-	}*/
+	}
 	
 }
