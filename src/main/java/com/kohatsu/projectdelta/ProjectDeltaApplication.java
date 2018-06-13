@@ -10,10 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.kohatsu.projectdelta.domain.Cliente;
 import com.kohatsu.projectdelta.domain.Endereco;
 import com.kohatsu.projectdelta.domain.Profissional;
+import com.kohatsu.projectdelta.domain.Servico;
 import com.kohatsu.projectdelta.domain.Telefone;
 import com.kohatsu.projectdelta.repositories.ClienteRepository;
 import com.kohatsu.projectdelta.repositories.EnderecoRepository;
 import com.kohatsu.projectdelta.repositories.ProfissionalRepository;
+import com.kohatsu.projectdelta.repositories.ServicoRepository;
 import com.kohatsu.projectdelta.repositories.TelefoneRepository;
 
 @SpringBootApplication
@@ -27,8 +29,8 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 	private TelefoneRepository telefoneRepository;
 	@Autowired
 	private ProfissionalRepository profissionalRepository; 
-	/*@Autowired
-	private ServicoRepository servicoRepository; */
+	@Autowired
+	private ServicoRepository servicoRepository; 
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectDeltaApplication.class, args);
@@ -37,7 +39,7 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		/*Servico serv = new Servico(null, "Pilates", "Dar aula de pilates");*/
+		Servico serv = new Servico(null, "Pilates", "Dar aula de pilates");
 		
 		Cliente cli1 = new Cliente(null, "Alisson", 'M',"35447310881");
 		Cliente cli2 = new Cliente(null, "Willian", 'M',"56242986094");
@@ -66,7 +68,7 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 		profissionalRepository.saveAll(Arrays.asList(pro));
 		telefoneRepository.saveAll(Arrays.asList(tel1));
 		enderecoRepository.saveAll(Arrays.asList(end1, end2));
-		/*servicoRepository.saveAll(Arrays.asList(serv));*/
+		servicoRepository.saveAll(Arrays.asList(serv));
 		
 		
 	}
