@@ -27,6 +27,8 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 	private TelefoneRepository telefoneRepository;
 	@Autowired
 	private ProfissionalRepository profissionalRepository; 
+	/*@Autowired
+	private ServicoRepository servicoRepository; */
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectDeltaApplication.class, args);
@@ -35,32 +37,36 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Cliente cli = new Cliente(null, "Alisson", 'M',"35447310881");
+		/*Servico serv = new Servico(null, "Pilates", "Dar aula de pilates");*/
+		
+		Cliente cli1 = new Cliente(null, "Alisson", 'M',"35447310881");
+		Cliente cli2 = new Cliente(null, "Willian", 'M',"56242986094");
+		
 		Profissional pro = new Profissional(null, "Anderson", "62828648010", "anderson@gmail.com");
 		
-		Endereco end = new Endereco("Rua Maria Madalena", "124", null, "Jardim Gayon", "86039380", cli);
+		Endereco end1 = new Endereco(null, "Rua Maria Madalena", "124", null, "Jardim Gayon", "86039380", cli2);
+		Endereco end2 = new Endereco(null, null, null, null, null, null, pro);
 		
-		Telefone tel1 = new Telefone();
-		tel1.setId(null);
-		tel1.setDdd("43");
-		tel1.setNumero("988144287");
-		tel1.setCliente(cli);
+
+		/*end2.setProfissional(pro);*/
 		
-		Telefone tel2 = new Telefone();
-		tel2.setId(null);
-		tel2.setDdd("43");
-		tel2.setNumero("996295333");
-		tel2.setProfissional(pro);
+		Telefone tel1 = new Telefone(null, "43", "988144287", cli1);
+		/*Telefone tel2 = new Telefone(null, "43", "996295333", pro);*/
 		
-		cli.getTelefones().addAll(Arrays.asList(tel1));
-		pro.getTelefones().addAll(Arrays.asList(tel2));
 		
-		cli.getEnderecos().addAll(Arrays.asList(end));
+		cli1.getTelefones().addAll(Arrays.asList(tel1));
+		/*cli2.getTelefones().addAll(Arrays.asList(tel1));*/
+		/*pro.getTelefones().addAll(Arrays.asList(tel2));*/
 		
-		clienteRepository.saveAll(Arrays.asList(cli));
+		/*cli1.getEnderecos().addAll(Arrays.asList(end2));*/
+		cli2.getEnderecos().addAll(Arrays.asList(end1));
+		pro.getEnderecos().addAll(Arrays.asList(end2));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
 		profissionalRepository.saveAll(Arrays.asList(pro));
-		telefoneRepository.saveAll(Arrays.asList(tel1, tel2));
-		enderecoRepository.saveAll(Arrays.asList(end));
+		telefoneRepository.saveAll(Arrays.asList(tel1));
+		enderecoRepository.saveAll(Arrays.asList(end1, end2));
+		/*servicoRepository.saveAll(Arrays.asList(serv));*/
 		
 		
 	}

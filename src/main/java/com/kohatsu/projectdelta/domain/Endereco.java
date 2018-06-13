@@ -30,18 +30,35 @@ public class Endereco implements Serializable{
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name="profissional_id")
+	private Profissional profissional;
+	
 	public Endereco() {
 	}
 
 
-	public Endereco(String logradouro, String numero, String complemento, String bairro, String cep, Cliente cliente) {
+	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, Cliente cliente) {
 		super();
+		this.id=id;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.complemento = complemento;
 		this.bairro = bairro;
 		this.cep = cep;
-		this.cliente=cliente;
+		this.cliente = cliente;
+	}
+	
+	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, Profissional profissional) {
+		super();
+		this.id=id;
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cep = cep;
+		this.profissional = profissional;
 	}
 
 
@@ -104,8 +121,24 @@ public class Endereco implements Serializable{
 		this.cep = cep;
 	}
 
-	
+	public Cliente getCliente() {
+		return cliente;
+	}
 
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	public Profissional getProfissional() {
+		return profissional;
+	}
+	
+	public void setProfissional(Profissional profissional) {
+		this.profissional = profissional;
+	}
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

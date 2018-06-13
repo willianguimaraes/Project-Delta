@@ -29,8 +29,15 @@ public class Profissional implements Serializable{
 	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
 	private List<Telefone> telefones = new ArrayList<>();
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
+	private List<Endereco> enderecos = new ArrayList<>();
+	
+	/*@JoinColumn(name="servico_id")
+	private Servico servico;*/
+	
+	
 	public Profissional() {
-		super();
 	}
 
 
@@ -40,6 +47,7 @@ public class Profissional implements Serializable{
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
+		/*this.servico = servico;*/
 	}
 
 
@@ -90,6 +98,15 @@ public class Profissional implements Serializable{
 		this.telefones = telefones;
 	}
 
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+	
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
