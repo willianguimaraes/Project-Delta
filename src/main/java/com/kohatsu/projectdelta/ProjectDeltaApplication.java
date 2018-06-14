@@ -1,5 +1,6 @@
 package com.kohatsu.projectdelta;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +8,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.kohatsu.projectdelta.domain.Agendamento;
 import com.kohatsu.projectdelta.domain.Cliente;
 import com.kohatsu.projectdelta.domain.Endereco;
 import com.kohatsu.projectdelta.domain.Profissional;
 import com.kohatsu.projectdelta.domain.Servico;
 import com.kohatsu.projectdelta.domain.Telefone;
+import com.kohatsu.projectdelta.domain.enums.Semanas;
+import com.kohatsu.projectdelta.repositories.AgendamentoRepository;
 import com.kohatsu.projectdelta.repositories.ClienteRepository;
 import com.kohatsu.projectdelta.repositories.EnderecoRepository;
 import com.kohatsu.projectdelta.repositories.ProfissionalRepository;
@@ -31,6 +35,8 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 	private ProfissionalRepository profissionalRepository; 
 	@Autowired
 	private ServicoRepository servicoRepository; 
+	@Autowired
+	private AgendamentoRepository agendamentoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectDeltaApplication.class, args);
@@ -69,6 +75,17 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 		telefoneRepository.saveAll(Arrays.asList(tel1, tel2, tel3));
 		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3));	
 		
+		
+		SimpleDateFormat fd = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat ft = new SimpleDateFormat("HH:mm");
+		
+		Agendamento agend = new Agendamento(null, Semanas.SEGUNDA, fd.parse("13/03/2018"), ft.parse("15:50"));
+		
+		agend.getProfissionais().addAll(Arrays.asList(pro1));
+		pro1.getAgendamento().addAll(Arrays.asList(agend));
+
+		agendamentoRepository.saveAll(Arrays.asList(agend));
+		profissionalRepository.saveAll(Arrays.asList(pro1));
 		
 	}
 	
