@@ -48,7 +48,7 @@ public class ClienteService {
 		
 	}
 	
-public Cliente fromDTO(ClienteNewDTO objDto) {
+	public Cliente fromDTO(ClienteNewDTO objDto) {
 		
 		Cliente cliente = new Cliente(null, objDto.getNome(), objDto.getSexo(), objDto.getCpf());
 		Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumeroEnd(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), cliente);
