@@ -1,18 +1,24 @@
 package com.kohatsu.projectdelta.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.kohatsu.projectdelta.domain.Profissional;
 import com.kohatsu.projectdelta.domain.Servico;
 import com.kohatsu.projectdelta.dto.ServicoDTO;
+import com.kohatsu.projectdelta.dto.ServicoNewDTO;
 import com.kohatsu.projectdelta.services.ProfissionalService;
 /*import com.kohatsu.projectdelta.dto.ServicoDTO;*/
 import com.kohatsu.projectdelta.services.ServicoService;
@@ -56,8 +62,10 @@ public class ServicoResource {
 		return lista;
 	}
 	
-	/*@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody Servico obj){
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody ServicoNewDTO objDto){
+		
+		Servico obj = service.fromDTO(objDto);
 		
 		obj = service.insert(obj);
 		
@@ -65,6 +73,6 @@ public class ServicoResource {
 		
 		return ResponseEntity.created(uri).build();
 		
-	}*/
+	}
 	
 }
