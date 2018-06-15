@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kohatsu.projectdelta.domain.Profissional;
 import com.kohatsu.projectdelta.domain.Servico;
 import com.kohatsu.projectdelta.exceptions.ObjectNotFoundException;
 import com.kohatsu.projectdelta.repositories.ServicoRepository;
@@ -15,6 +16,8 @@ public class ServicoService {
 
 	@Autowired
 	private ServicoRepository repo;
+	/*@Autowired
+	private ProfissionalService profissionalService;*/
 		
 	public Servico find(Integer id) {
 			
@@ -29,5 +32,25 @@ public class ServicoService {
 		return repo.findAll();
 		
 	}
+
+	public List<Servico> servicoPorProfissional(Profissional profissional) {
+
+		List<Servico> lista = repo.findByProfissional(profissional);
+		
+		return lista;
+		
+	}
+
+	/*@Transactional
+	public Servico insert(Servico obj) {
+
+		obj.setId(null);
+		obj.setProfissional(Arrays.asList(profissionalService.find(obj.getId())));
+		
+		obj = repo.save(obj);
+		
+		return obj;
+		
+	}*/
 	
 }

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Servico implements Serializable{
@@ -22,10 +22,12 @@ public class Servico implements Serializable{
 	private String nome;
 	private String descricao;
 	
-	@JsonBackReference
+	@JsonManagedReference
+	/*@JsonBackReference*/
 	@ManyToOne
 	@JoinColumn(name="profissional_id")
 	private Profissional profissional;
+	
 	
 	public Servico() {
 		
@@ -64,6 +66,15 @@ public class Servico implements Serializable{
 		this.descricao = descricao;
 	}
 
+	public Profissional getProfissional() {
+		return profissional;
+	}
+	
+	public void setProfissional(Profissional profissional) {
+		this.profissional = profissional;
+	}
+	
+	
 	
 	
 	@Override

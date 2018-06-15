@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kohatsu.projectdelta.domain.Profissional;
 import com.kohatsu.projectdelta.domain.Servico;
 import com.kohatsu.projectdelta.dto.ServicoDTO;
+import com.kohatsu.projectdelta.services.ProfissionalService;
 /*import com.kohatsu.projectdelta.dto.ServicoDTO;*/
 import com.kohatsu.projectdelta.services.ServicoService;
 
@@ -21,6 +23,8 @@ public class ServicoResource {
 
 	@Autowired
 	private ServicoService service;
+	@Autowired
+	private ProfissionalService profissionalService;
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
@@ -41,5 +45,26 @@ public class ServicoResource {
 		return ResponseEntity.ok().body(listDto);
 		
 	}
+	
+	@RequestMapping(value="/profissional/{id}",method=RequestMethod.GET)
+	public List<Servico> findByProfissional(@PathVariable("id") Integer id ) {
+		
+		Profissional profissional = profissionalService.find(id);
+		
+		List<Servico> lista = service.servicoPorProfissional(profissional);
+		
+		return lista;
+	}
+	
+	/*@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody Servico obj){
+		
+		obj = service.insert(obj);
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		
+		return ResponseEntity.created(uri).build();
+		
+	}*/
 	
 }
