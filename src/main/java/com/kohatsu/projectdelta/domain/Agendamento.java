@@ -1,17 +1,15 @@
 package com.kohatsu.projectdelta.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kohatsu.projectdelta.domain.enums.Semanas;
 
@@ -30,23 +28,30 @@ public class Agendamento implements Serializable{
 	@JsonFormat(pattern="HH:mm")
 	private Date horario;
 	
-	@JsonBackReference
-	/*@JsonManagedReference*/
-	@ManyToMany(mappedBy="agendamentos")
-	private List<Profissional> profissionais = new ArrayList<>();
+
+	@ManyToOne()
+	@JoinColumn(name="profissional_id")
+	private Profissional profissional;
+	
+	@ManyToOne()
+	@JoinColumn(name="cliente_id")
+	private Cliente cliente;
 		
+	
 	
 	public Agendamento() {
 		
 	}
 
 
-	public Agendamento(Integer id, Semanas semana, Date dia, Date horario) {
+	public Agendamento(Integer id, Semanas semana, Date dia, Date horario, Profissional pro, Cliente cliente) {
 		super();
 		this.id = id;
 		this.semana = semana.getCod();
 		this.dia = dia;
 		this.horario = horario;
+		this.profissional=pro;
+		this.cliente = cliente;
 	}
 
 
@@ -89,13 +94,7 @@ public class Agendamento implements Serializable{
 		this.horario = horario;
 	}
 	
-	public List<Profissional> getProfissionais() {
-		return profissionais;
-	}
 	
-	public void setProfissionais(List<Profissional> profissionais) {
-		this.profissionais = profissionais;
-	}
 	
 
 	@Override

@@ -79,13 +79,18 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 		SimpleDateFormat fd = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat ft = new SimpleDateFormat("HH:mm");
 		
-		Agendamento agend = new Agendamento(null, Semanas.SEGUNDA, fd.parse("13/03/2018"), ft.parse("15:50"));
+		Agendamento agend1 = new Agendamento(null, Semanas.SEGUNDA, fd.parse("13/03/2018"), ft.parse("15:50"), pro1, cli1);
+		Agendamento agend2 = new Agendamento(null, Semanas.SEGUNDA, fd.parse("13/03/2018"), ft.parse("15:50"), pro1, cli1);
 		
-		agend.getProfissionais().addAll(Arrays.asList(pro1));
-		pro1.getAgendamento().addAll(Arrays.asList(agend));
+		/*agend.getProfissionais().addAll(Arrays.asList(pro1));*/
+		pro1.getAgendamento().addAll(Arrays.asList(agend1));
+		pro1.getAgendamento().addAll(Arrays.asList(agend2));
+		cli1.getAgendamentos().addAll(Arrays.asList(agend1));
+		cli1.getAgendamentos().addAll(Arrays.asList(agend2));
 
-		agendamentoRepository.saveAll(Arrays.asList(agend));
+		agendamentoRepository.saveAll(Arrays.asList(agend1, agend2));
 		profissionalRepository.saveAll(Arrays.asList(pro1));
+		clienteRepository.saveAll(Arrays.asList(cli1));
 		
 	}
 	

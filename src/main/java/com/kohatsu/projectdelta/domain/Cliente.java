@@ -34,6 +34,9 @@ public class Cliente implements Serializable{
 	@JsonManagedReference
 	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
 	private List<Telefone> telefones = new ArrayList<>();
+	
+	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
+	private List<Agendamento> agendamentos = new ArrayList<>();
 
 	
 	public Cliente() {
@@ -97,6 +100,13 @@ public class Cliente implements Serializable{
 		this.telefones = telefones;
 	}
 
+	public List<Agendamento> getAgendamentos() {
+		return agendamentos;
+	}
+	
+	public void setAgendamentos(List<Agendamento> agendamentos) {
+		this.agendamentos = agendamentos;
+	}
 	
 	
 	@Override

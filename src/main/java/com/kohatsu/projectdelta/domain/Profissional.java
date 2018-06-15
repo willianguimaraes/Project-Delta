@@ -9,9 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -40,13 +37,9 @@ public class Profissional implements Serializable{
 	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
 	private List<Servico> servicos = new ArrayList<>();
 	
-	@JsonManagedReference
 	/*@JsonBackReference*/
-	@ManyToMany
-	@JoinTable(name="PROFISSIONAL_AGENDAMENTO",
-		joinColumns = @JoinColumn(name = "profissional_id"),
-		inverseJoinColumns = @JoinColumn(name = "agendamento_id")
-	)
+	/*@JsonManagedReference*/
+	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
 	private List<Agendamento> agendamentos = new ArrayList<>();
 	
 	public Profissional() {
