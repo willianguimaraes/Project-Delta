@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.kohatsu.projectdelta.domain.Profissional;
@@ -48,6 +49,23 @@ public class ServicoService {
 		obj = repo.save(obj);
 		
 		return obj;
+		
+	}
+	
+	public void delete(Integer id) {
+		
+		find(id);
+		
+		
+		try {
+			
+			repo.deleteById(id);
+			
+		}catch(DataIntegrityViolationException e) {
+			
+			throw new DataIntegrityViolationException("Não é possível excluir pois há entidades relacionadas.");
+			
+		}
 		
 	}
 	
