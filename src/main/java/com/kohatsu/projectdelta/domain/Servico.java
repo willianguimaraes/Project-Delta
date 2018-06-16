@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Servico implements Serializable{
@@ -22,8 +22,7 @@ public class Servico implements Serializable{
 	private String nome;
 	private String descricao;
 	
-	@JsonManagedReference
-	/*@JsonBackReference*/
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="profissional_id")
 	private Profissional profissional;

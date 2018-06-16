@@ -51,46 +51,55 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 		Servico serv1 = new Servico(null, "Pilates", "Dar aula de pilates", pro1);
 		Servico serv2 = new Servico(null, "Instrutor", "Auxiliar as atividades com os alunos", pro2);
 		
-		pro1.getServicos().addAll(Arrays.asList(serv1));
-		pro2.getServicos().addAll(Arrays.asList(serv2));
+		pro1.getServicos().addAll(Arrays.asList(serv2));
+		pro2.getServicos().addAll(Arrays.asList(serv1));
 		
 		profissionalRepository.saveAll(Arrays.asList(pro1, pro2));
 		servicoRepository.saveAll(Arrays.asList(serv1, serv2));
 		
 		Cliente cli1 = new Cliente(null, "Alisson", 'M',"35447310881");
-		/*Cliente cli2 = new Cliente(null, "Willian", 'M',"56242986094");*/
+		Cliente cli2 = new Cliente(null, "Willian", 'M',"56242986094");
 		
 		Telefone tel1 = new Telefone(null, "43", "988144287", cli1);
 		Telefone tel2 = new Telefone(null, "43", "996295333", pro1);
 		Telefone tel3 = new Telefone(null, "43", "996295333", pro2);
+		Telefone tel4 = new Telefone(null, "43", "996295333", cli2);
 		
 		Endereco end1 = new Endereco(null, "Rua Maria Madalena", "124", null, "Jardim Gayon", "86039380", cli1);
 		Endereco end2 = new Endereco(null, null, null, null, null, null, pro1);
 		Endereco end3 = new Endereco(null, "Rua Doutor Mário Campos", "1500", null, "Parigot de Souza 2", "86082360", pro2);
+		Endereco end4 = new Endereco(null, "Rua Doutor Mário Campos", "1500", null, "Parigot de Souza 2", "86082360", cli2);
 		
+		pro1.getTelefones().addAll(Arrays.asList(tel2));
+		pro2.getTelefones().addAll(Arrays.asList(tel3));
+		pro1.getEnderecos().addAll(Arrays.asList(end2));
+		pro2.getEnderecos().addAll(Arrays.asList(end3));
 		cli1.getTelefones().addAll(Arrays.asList(tel1));
 		cli1.getEnderecos().addAll(Arrays.asList(end1));
+		cli2.getTelefones().addAll(Arrays.asList(tel4));
+		cli2.getEnderecos().addAll(Arrays.asList(end4));
 		
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		telefoneRepository.saveAll(Arrays.asList(tel1, tel2, tel3));
-		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3));	
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		telefoneRepository.saveAll(Arrays.asList(tel1, tel2, tel3, tel4));
+		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3, end4));	
 		
 		
 		SimpleDateFormat fd = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat ft = new SimpleDateFormat("HH:mm");
 		
-		Agendamento agend1 = new Agendamento(null, Semanas.SEGUNDA, fd.parse("13/03/2018"), ft.parse("15:50"), pro1, cli1);
-		Agendamento agend2 = new Agendamento(null, Semanas.SEGUNDA, fd.parse("13/03/2018"), ft.parse("15:50"), pro1, cli1);
+		Agendamento agend1 = new Agendamento(null, Semanas.SEGUNDA.getCod(), fd.parse("13/03/2018"), ft.parse("15:50"), pro1);
+		Agendamento agend2 = new Agendamento(null, Semanas.SEGUNDA.getCod(), fd.parse("13/03/2018"), ft.parse("15:50"), pro2);
+		Agendamento agend3 = new Agendamento(null, Semanas.TERCA.getCod(), fd.parse("15/03/2018"), ft.parse("18:50"), pro2);
 		
 		/*agend.getProfissionais().addAll(Arrays.asList(pro1));*/
 		pro1.getAgendamento().addAll(Arrays.asList(agend1));
-		pro1.getAgendamento().addAll(Arrays.asList(agend2));
-		cli1.getAgendamentos().addAll(Arrays.asList(agend1));
-		cli1.getAgendamentos().addAll(Arrays.asList(agend2));
+		pro2.getAgendamento().addAll(Arrays.asList(agend2, agend3));
+		/*cli1.getAgendamentos().addAll(Arrays.asList(agend1));
+		cli1.getAgendamentos().addAll(Arrays.asList(agend2));*/
 
-		agendamentoRepository.saveAll(Arrays.asList(agend1, agend2));
-		profissionalRepository.saveAll(Arrays.asList(pro1));
-		clienteRepository.saveAll(Arrays.asList(cli1));
+		agendamentoRepository.saveAll(Arrays.asList(agend1, agend2, agend3));
+		profissionalRepository.saveAll(Arrays.asList(pro1, pro2));
+		/*clienteRepository.saveAll(Arrays.asList(cli1));*/
 		
 	}
 	

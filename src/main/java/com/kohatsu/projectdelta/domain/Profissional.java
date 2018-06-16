@@ -11,8 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Profissional implements Serializable{
@@ -26,21 +25,19 @@ public class Profissional implements Serializable{
 	private String cpf;
 	private String email;
 	
-	@JsonManagedReference
+	
 	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
 	private List<Telefone> telefones = new ArrayList<>();
 	
-	@JsonManagedReference
+	
 	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	@JsonBackReference
-	/*@JsonManagedReference*/
+	
 	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
 	private List<Servico> servicos = new ArrayList<>();
 	
-	/*@JsonBackReference*/
-	/*@JsonManagedReference*/
+	@JsonIgnore
 	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
 	private List<Agendamento> agendamentos = new ArrayList<>();
 	

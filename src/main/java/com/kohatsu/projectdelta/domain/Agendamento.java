@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kohatsu.projectdelta.domain.enums.Semanas;
 
 @Entity
@@ -28,7 +29,7 @@ public class Agendamento implements Serializable{
 	@JsonFormat(pattern="HH:mm")
 	private Date horario;
 	
-
+	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name="profissional_id")
 	private Profissional profissional;
@@ -44,14 +45,14 @@ public class Agendamento implements Serializable{
 	}
 
 
-	public Agendamento(Integer id, Semanas semana, Date dia, Date horario, Profissional pro, Cliente cliente) {
+	public Agendamento(Integer id, Integer semana, Date dia, Date horario, Profissional pro) {
 		super();
 		this.id = id;
-		this.semana = semana.getCod();
+		this.semana = semana;
 		this.dia = dia;
 		this.horario = horario;
 		this.profissional=pro;
-		this.cliente = cliente;
+		/*this.cliente = cliente;*/
 	}
 
 
@@ -94,7 +95,21 @@ public class Agendamento implements Serializable{
 		this.horario = horario;
 	}
 	
+	public Profissional getProfissional() {
+		return profissional;
+	}
 	
+	public void setProfissional(Profissional profissional) {
+		this.profissional = profissional;
+	}
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+	
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	
 
 	@Override
