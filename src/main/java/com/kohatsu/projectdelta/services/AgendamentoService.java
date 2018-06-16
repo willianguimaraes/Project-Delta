@@ -74,9 +74,9 @@ public class AgendamentoService {
 	public Agendamento fromDTO(@Valid AgendamentoNewDTO objDto) {
 		
 		Profissional profissional = profissionalService.find(objDto.getIdProf());
-		/*Cliente cliente = clienteService.find(objDto.getIdClient());*/
+		Cliente cliente = clienteService.find(objDto.getIdClient());
 
-		Agendamento agend = new Agendamento(null, objDto.getSemana(), objDto.getDia(), objDto.getHorario(), profissional);
+		Agendamento agend = new Agendamento(null, objDto.getSemana(), objDto.getDia(), objDto.getHorario(), profissional, cliente);
 		
 		return agend;
 		

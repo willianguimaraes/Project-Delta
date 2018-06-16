@@ -34,6 +34,7 @@ public class Agendamento implements Serializable{
 	@JoinColumn(name="profissional_id")
 	private Profissional profissional;
 	
+	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
@@ -45,14 +46,14 @@ public class Agendamento implements Serializable{
 	}
 
 
-	public Agendamento(Integer id, Integer semana, Date dia, Date horario, Profissional pro) {
+	public Agendamento(Integer id, Integer semana, Date dia, Date horario, Profissional pro, Cliente cliente) {
 		super();
 		this.id = id;
 		this.semana = semana;
 		this.dia = dia;
 		this.horario = horario;
 		this.profissional=pro;
-		/*this.cliente = cliente;*/
+		this.cliente = cliente;
 	}
 
 
