@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.kohatsu.projectdelta.domain.Agendamento;
@@ -47,14 +48,6 @@ public class AgendamentoService {
 		return lista;
 	}
 
-	public List<Agendamento> agendamentoPorCliente(Cliente cliente) {
-
-		List<Agendamento> lista = repo.findByCliente(cliente);
-		
-		return lista;
-		
-	}
-
 	@Transactional
 	public Agendamento insert(Agendamento obj) {
 
@@ -68,6 +61,31 @@ public class AgendamentoService {
 		obj = repo.save(obj);
 		
 		return obj;
+		
+	}
+	
+	public void delete(Integer id) {
+		
+		find(id);
+		
+		
+		try {
+			
+			repo.deleteById(id);
+			
+		}catch(DataIntegrityViolationException e) {
+			
+			throw new DataIntegrityViolationException("Não é possível excluir pois há entidades relacionadas.");
+			
+		}
+		
+	}
+	
+	public List<Agendamento> agendamentoPorCliente(Cliente cliente) {
+
+		List<Agendamento> lista = repo.findByCliente(cliente);
+		
+		return lista;
 		
 	}
 	
