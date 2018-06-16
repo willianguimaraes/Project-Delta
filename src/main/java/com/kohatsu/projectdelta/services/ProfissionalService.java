@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,6 +48,23 @@ public class ProfissionalService {
 		enderecoRepository.saveAll(obj.getEnderecos());
 		
 		return obj;
+		
+	}
+	
+public void delete(Integer id) {
+		
+		find(id);
+		
+		
+		try {
+			
+			repo.deleteById(id);
+			
+		}catch(DataIntegrityViolationException e) {
+			
+			throw new DataIntegrityViolationException("Não é possível excluir pois há entidades relacionadas.");
+			
+		}
 		
 	}
 
