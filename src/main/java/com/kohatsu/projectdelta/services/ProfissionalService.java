@@ -19,6 +19,7 @@ import com.kohatsu.projectdelta.dto.ProfissionalNewDTO;
 import com.kohatsu.projectdelta.exceptions.ObjectNotFoundException;
 import com.kohatsu.projectdelta.repositories.EnderecoRepository;
 import com.kohatsu.projectdelta.repositories.ProfissionalRepository;
+import com.kohatsu.projectdelta.repositories.TelefoneRepository;
 
 @Service
 public class ProfissionalService {
@@ -27,6 +28,8 @@ public class ProfissionalService {
 	private ProfissionalRepository repo;
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	@Autowired
+	private TelefoneRepository telefoneRepository;
 		
 	public Profissional find(Integer id) {
 			
@@ -48,6 +51,7 @@ public class ProfissionalService {
 		obj.setId(null);
 		obj = repo.save(obj);
 		enderecoRepository.save(obj.getEndereco());
+		telefoneRepository.saveAll(obj.getTelefones());
 		
 		return obj;
 		
@@ -87,10 +91,10 @@ public class ProfissionalService {
 			
 			Endereco endereco = new Endereco(objDto.getIdEnd(), objDto.getLogradouro(), objDto.getNumeroEnd(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep());
 			Profissional profissional = new Profissional(objDto.getId(), objDto.getNome(), objDto.getCpf(), objDto.getEmail(), endereco);
-			/*Telefone telefone = new Telefone(null, objDto.getDdd(), objDto.getNumeroTel(), profissional);*/
+			Telefone telefone = new Telefone(null, objDto.getDdd(), objDto.getNumeroTel(), profissional);
 			
 			endereco.getProfissionais().addAll(Arrays.asList(profissional));
-			/*profissional.getTelefones().add(telefone);*/
+			profissional.getTelefones().addAll(Arrays.asList(telefone));
 			
 			return profissional;
 			

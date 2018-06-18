@@ -11,10 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kohatsu.projectdelta.domain.Cliente;
 import com.kohatsu.projectdelta.domain.Endereco;
+import com.kohatsu.projectdelta.domain.Telefone;
 import com.kohatsu.projectdelta.dto.ClienteNewDTO;
 import com.kohatsu.projectdelta.exceptions.ObjectNotFoundException;
 import com.kohatsu.projectdelta.repositories.ClienteRepository;
 import com.kohatsu.projectdelta.repositories.EnderecoRepository;
+import com.kohatsu.projectdelta.repositories.TelefoneRepository;
 
 @Service
 public class ClienteService {
@@ -23,6 +25,8 @@ public class ClienteService {
 	private ClienteRepository repo;
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	@Autowired
+	private TelefoneRepository telefoneRepository;
 
 		
 	public Cliente find(Integer id) {
@@ -45,6 +49,7 @@ public class ClienteService {
 		obj.setId(null);
 		obj = repo.save(obj);
 		enderecoRepository.save(obj.getEndereco());
+		telefoneRepository.saveAll(obj.getTelefones());
 		
 		return obj;
 		
@@ -75,10 +80,10 @@ public class ClienteService {
 			Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumeroEnd(), objDto.getComplemento(), 
 					objDto.getBairro(),	objDto.getCep());
 			Cliente cliente = new Cliente(null, objDto.getNome(), objDto.getSexo(), objDto.getCpf(), endereco);
-			/*Telefone telefone = new Telefone(null, obj.getTelefones()., obj.getNumeroTel(), cliente);*/
+			Telefone telefone = new Telefone(null, objDto.getDdd(), objDto.getNumeroTel(), cliente);
 			
 			endereco.getClientes().addAll(Arrays.asList(cliente));
-			/*cliente.getTelefones().add(telefone);*/
+			cliente.getTelefones().add(telefone);
 			
 			return cliente;
 			
@@ -88,11 +93,10 @@ public class ClienteService {
 			System.out.println(endereco.getId());
 			Cliente cliente = new Cliente(objDto.getId(), objDto.getNome(), objDto.getSexo(), objDto.getCpf(), endereco);
 			System.out.println(cliente.getId());
-			/*Telefone telefone = new Telefone(objDto.getIdTel(), objDto.getDdd(), objDto.getNumeroTel(), cliente);*/
+			Telefone telefone = new Telefone(objDto.getIdTel(), objDto.getDdd(), objDto.getNumeroTel(), cliente);
 			
 			endereco.getClientes().addAll(Arrays.asList(cliente));
-			/*cliente.getEnderecos().addAll(Arrays.asList(endereco));*/
-			/*cliente.getTelefones().add(telefone);*/
+			cliente.getTelefones().addAll(Arrays.asList(telefone));
 			
 			return cliente;
 			

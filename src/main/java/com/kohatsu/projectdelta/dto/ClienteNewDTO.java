@@ -13,9 +13,9 @@ public class ClienteNewDTO implements Serializable{
 	private char sexo;
 	private String cpf;
 	
-	/*private Integer idTel;
+	private Integer idTel;
 	private String ddd;
-	private String numeroTel;*/
+	private String numeroTel;
 	
 	private Integer idEnd;
 	private String logradouro;
@@ -54,7 +54,7 @@ public class ClienteNewDTO implements Serializable{
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	/*public Integer getIdTel() {
+	public Integer getIdTel() {
 		return idTel;
 	}
 	public void setIdTel(Integer idTel) {
@@ -71,7 +71,7 @@ public class ClienteNewDTO implements Serializable{
 	}
 	public void setNumeroTel(String numeroTel) {
 		this.numeroTel = numeroTel;
-	}*/
+	}
 	public Integer getIdEnd() {
 		return idEnd;
 	}
