@@ -1,13 +1,18 @@
 package com.kohatsu.projectdelta.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,20 +31,18 @@ public class Endereco implements Serializable{
 	private String cep;
 	
 	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name="cliente_id")
-	private Cliente cliente;
+	@OneToMany(mappedBy="endereco", cascade=CascadeType.ALL)
+	private List<Cliente> clientes = new ArrayList<>();
 	
 	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name="profissional_id")
-	private Profissional profissional;
+	@OneToMany(mappedBy="endereco", cascade=CascadeType.ALL)
+	private List<Profissional> profissionais = new ArrayList<>();
 	
 	public Endereco() {
 	}
 
 
-	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, Cliente cliente) {
+	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep) {
 		super();
 		this.id=id;
 		this.logradouro = logradouro;
@@ -47,19 +50,8 @@ public class Endereco implements Serializable{
 		this.complemento = complemento;
 		this.bairro = bairro;
 		this.cep = cep;
-		this.cliente = cliente;
 	}
 	
-	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, Profissional profissional) {
-		super();
-		this.id=id;
-		this.logradouro = logradouro;
-		this.numero = numero;
-		this.complemento = complemento;
-		this.bairro = bairro;
-		this.cep = cep;
-		this.profissional = profissional;
-	}
 
 
 	public Integer getId() {
@@ -121,20 +113,20 @@ public class Endereco implements Serializable{
 		this.cep = cep;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public List<Cliente> getClientes() {
+		return clientes;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
 	}
 	
-	public Profissional getProfissional() {
-		return profissional;
+	public List<Profissional> getProfissionais() {
+		return profissionais;
 	}
 	
-	public void setProfissional(Profissional profissional) {
-		this.profissional = profissional;
+	public void setProfissionais(List<Profissional> profissionais) {
+		this.profissionais = profissionais;
 	}
 	
 	

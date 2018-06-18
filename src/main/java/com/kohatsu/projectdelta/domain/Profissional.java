@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -30,8 +32,9 @@ public class Profissional implements Serializable{
 	private List<Telefone> telefones = new ArrayList<>();
 	
 	
-	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
-	private List<Endereco> enderecos = new ArrayList<>();
+	@OneToOne
+	@JoinColumn(name="endereco_id")
+	private Endereco endereco;
 	
 	
 	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
@@ -45,12 +48,13 @@ public class Profissional implements Serializable{
 	}
 
 
-	public Profissional(Integer id, String nome, String cpf, String email) {
+	public Profissional(Integer id, String nome, String cpf, String email, Endereco endereco) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
+		this.endereco = endereco;
 	}
 
 
@@ -101,12 +105,12 @@ public class Profissional implements Serializable{
 		this.telefones = telefones;
 	}
 
-	public List<Endereco> getEnderecos() {
-		return enderecos;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 	
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 	
 	public List<Servico> getServicos() {

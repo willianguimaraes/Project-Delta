@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,8 +29,9 @@ public class Cliente implements Serializable{
 	private char sexo;
 	private String cpf;
 	
-	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
-	private List<Endereco> enderecos = new ArrayList<>();
+	@OneToOne
+	@JoinColumn(name="endereco_id")
+	private Endereco endereco;
 
 	
 	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
@@ -43,12 +46,13 @@ public class Cliente implements Serializable{
 		super();
 	}
 
-	public Cliente(Integer id, String nome, char sexo ,String cpf) {
+	public Cliente(Integer id, String nome, char sexo ,String cpf, Endereco endereco) {
 		super();
 		this.id=id;
 		this.nome = nome;
 		this.sexo = sexo;
 		this.cpf = cpf;
+		this.endereco = endereco;
 	}
 
 	
@@ -84,12 +88,12 @@ public class Cliente implements Serializable{
 		this.cpf = cpf;
 	}
 
-	public List<Endereco> getEnderecos() {
-		return enderecos;
+	public Endereco getEnderecos() {
+		return endereco;
 	}
 
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public List<Telefone> getTelefones() {

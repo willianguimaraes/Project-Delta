@@ -1,5 +1,6 @@
 package com.kohatsu.projectdelta.services;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public class ProfissionalService {
 
 		obj.setId(null);
 		obj = repo.save(obj);
-		enderecoRepository.saveAll(obj.getEnderecos());
+		enderecoRepository.save(obj.getEndereco());
 		
 		return obj;
 		
@@ -70,11 +71,11 @@ public class ProfissionalService {
 
 	public Profissional fromDTO(@Valid ProfissionalNewDTO objDto) {
 
-		Profissional profissional = new Profissional(null, objDto.getNome(), objDto.getCpf(), objDto.getEmail());
-		Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumeroEnd(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), profissional);
+		Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumeroEnd(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep());
+		Profissional profissional = new Profissional(null, objDto.getNome(), objDto.getCpf(), objDto.getEmail(), endereco);
 		Telefone telefone = new Telefone(null, objDto.getDdd(), objDto.getNumeroTel(), profissional);
 		
-		profissional.getEnderecos().add(endereco);
+		endereco.getProfissionais().addAll(Arrays.asList(profissional));
 		profissional.getTelefones().add(telefone);
 		
 		return profissional;
