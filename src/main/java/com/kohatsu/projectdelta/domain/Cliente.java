@@ -88,7 +88,7 @@ public class Cliente implements Serializable{
 		this.cpf = cpf;
 	}
 
-	public Endereco getEnderecos() {
+	public Endereco getEndereco() {
 		return endereco;
 	}
 

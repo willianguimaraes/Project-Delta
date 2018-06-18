@@ -1,11 +1,8 @@
 package com.kohatsu.projectdelta.services;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
-import javax.persistence.Index;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -14,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kohatsu.projectdelta.domain.Cliente;
 import com.kohatsu.projectdelta.domain.Endereco;
-import com.kohatsu.projectdelta.domain.Telefone;
 import com.kohatsu.projectdelta.dto.ClienteNewDTO;
 import com.kohatsu.projectdelta.exceptions.ObjectNotFoundException;
 import com.kohatsu.projectdelta.repositories.ClienteRepository;
@@ -27,6 +23,7 @@ public class ClienteService {
 	private ClienteRepository repo;
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+
 		
 	public Cliente find(Integer id) {
 			
@@ -47,7 +44,7 @@ public class ClienteService {
 		
 		obj.setId(null);
 		obj = repo.save(obj);
-		enderecoRepository.save(obj.getEnderecos());
+		enderecoRepository.save(obj.getEndereco());
 		
 		return obj;
 		
@@ -75,19 +72,22 @@ public class ClienteService {
 		
 		if(objDto.getId() == null) {
 			
-			Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumeroEnd(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep());
+			Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumeroEnd(), objDto.getComplemento(), 
+					objDto.getBairro(),	objDto.getCep());
 			Cliente cliente = new Cliente(null, objDto.getNome(), objDto.getSexo(), objDto.getCpf(), endereco);
-			Telefone telefone = new Telefone(null, objDto.getDdd(), objDto.getNumeroTel(), cliente);
+			/*Telefone telefone = new Telefone(null, obj.getTelefones()., obj.getNumeroTel(), cliente);*/
 			
 			endereco.getClientes().addAll(Arrays.asList(cliente));
-			cliente.getTelefones().add(telefone);
+			/*cliente.getTelefones().add(telefone);*/
 			
 			return cliente;
 			
 		} else {
 			
 			Endereco endereco = new Endereco(objDto.getIdEnd(), objDto.getLogradouro(), objDto.getNumeroEnd(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep());
+			System.out.println(endereco.getId());
 			Cliente cliente = new Cliente(objDto.getId(), objDto.getNome(), objDto.getSexo(), objDto.getCpf(), endereco);
+			System.out.println(cliente.getId());
 			/*Telefone telefone = new Telefone(objDto.getIdTel(), objDto.getDdd(), objDto.getNumeroTel(), cliente);*/
 			
 			endereco.getClientes().addAll(Arrays.asList(cliente));
@@ -103,28 +103,23 @@ public class ClienteService {
 	public Cliente update(Cliente obj) {
 		
 		Cliente newObj =  find(obj.getId());
-
-		/*Endereco endereco = enderecoRepository.findById(newObj.getEnderecos().getId());*/
+		Optional<Endereco> end = enderecoRepository.findById(obj.getEndereco().getId());
 		
-		/*end.add(endereco);*/
-		
-		/*newObj.setEnderecos(Arrays.asList(endereco));*/
-		/*newObj.setNome(obj.getNome());
-		newObj.setSexo(obj.getSexo());
-		newObj.setCpf(obj.getCpf());*/
-		
-	/*	newObj.getEnderecos().addAll(Arrays.asList(obj.ge))*/
-		/*updateData(newObj, obj);*/
-		
-		return repo.save(newObj);
-		
-	}
-	/*private void updateData(Cliente newObj, Cliente obj) {
+		end.get().setId(obj.getEndereco().getId());
+		end.get().setLogradouro(obj.getEndereco().getLogradouro());
+		end.get().setNumero(obj.getEndereco().getNumero());
+		end.get().setComplemento(obj.getEndereco().getComplemento());
+		end.get().setBairro(obj.getEndereco().getBairro());
+		end.get().setCep(obj.getEndereco().getCep());
 		
 		newObj.setNome(obj.getNome());
 		newObj.setSexo(obj.getSexo());
 		newObj.setCpf(obj.getCpf());
+		newObj.setEndereco(end.get());
 		
-	}*/
+		enderecoRepository.save(end.get());
+		return repo.save(newObj);
+		
+	}
 	
 }

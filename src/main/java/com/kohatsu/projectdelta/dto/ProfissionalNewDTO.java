@@ -14,6 +14,7 @@ public class ProfissionalNewDTO implements Serializable{
 	private String ddd;
 	private String numeroTel;
 	
+	private Integer idEnd;
 	private String logradouro;
 	private String numeroEnd;
 	private String complemento;
@@ -91,7 +92,12 @@ public class ProfissionalNewDTO implements Serializable{
 		this.cep = cep;
 	}
 	
-	
+	public Integer getIdEnd() {
+		return idEnd;
+	}
+	public void setIdEnd(Integer idEnd) {
+		this.idEnd = idEnd;
+	}
 	
 	
 }

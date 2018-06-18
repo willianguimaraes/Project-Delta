@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.kohatsu.projectdelta.domain.Cliente;
 import com.kohatsu.projectdelta.domain.Profissional;
 import com.kohatsu.projectdelta.dto.ProfissionalNewDTO;
+import com.kohatsu.projectdelta.dto.ClienteNewDTO;
 import com.kohatsu.projectdelta.dto.ProfissionalDTO;
 import com.kohatsu.projectdelta.services.ProfissionalService;
 
@@ -64,6 +66,21 @@ public class ProfissionalResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		
 		service.delete(id);
+		
+		return ResponseEntity.noContent().build();
+		
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody ProfissionalNewDTO objDto, @PathVariable Integer id){
+		
+		objDto.setId(id);
+		
+		Profissional obj = service.fromDTO(objDto);
+		
+		obj.setId(id);
+		
+		obj = service.update(obj);
 		
 		return ResponseEntity.noContent().build();
 		
