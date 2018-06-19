@@ -78,7 +78,7 @@ public class ClienteResource {
 		
 		obj.setId(id);
 		
-		obj = service.update(obj);
+		obj = service.update(obj, objDto);
 		
 		return ResponseEntity.noContent().build();
 		

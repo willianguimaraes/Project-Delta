@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.kohatsu.projectdelta.domain.Endereco;
 import com.kohatsu.projectdelta.domain.Profissional;
 import com.kohatsu.projectdelta.domain.Servico;
 import com.kohatsu.projectdelta.dto.ServicoNewDTO;
@@ -79,11 +80,36 @@ public class ServicoService {
 
 	public Servico fromDTO(@Valid ServicoNewDTO objDto) {
 		
-		Profissional profissional = profissionalService.find(objDto.getIdProf());
+		if(objDto.getId() == null) {
+			
+			Profissional profissional = profissionalService.find(objDto.getIdProf());
 
-		Servico servico = new Servico(null, objDto.getNome(), objDto.getDescricao(), profissional);
+			Servico servico = new Servico(null, objDto.getNome(), objDto.getDescricao(), profissional);
+			
+			return servico;
+			
+		}else {
+			
+			Profissional profissional = profissionalService.find(objDto.getIdProf());
+
+			Servico servico = new Servico(objDto.getId(), objDto.getNome(), objDto.getDescricao(), profissional);
+			
+			return servico;
+			
+		}
 		
-		return servico;
+	}
+	
+	public Servico update(Servico obj) {
+		
+		Servico newObj =  find(obj.getId());
+		
+		newObj.setId(obj.getId());
+		newObj.setNome(obj.getNome());
+		newObj.setDescricao(obj.getDescricao());
+		newObj.getProfissional().setId(obj.getProfissional().getId());
+		
+		return repo.save(newObj);
 		
 	}
 	

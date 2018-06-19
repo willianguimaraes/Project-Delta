@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.kohatsu.projectdelta.domain.Cliente;
 import com.kohatsu.projectdelta.domain.Profissional;
 import com.kohatsu.projectdelta.domain.Servico;
+import com.kohatsu.projectdelta.dto.ClienteNewDTO;
 import com.kohatsu.projectdelta.dto.ServicoDTO;
 import com.kohatsu.projectdelta.dto.ServicoNewDTO;
 import com.kohatsu.projectdelta.services.ProfissionalService;
@@ -79,6 +81,21 @@ public class ServicoResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		
 		service.delete(id);
+		
+		return ResponseEntity.noContent().build();
+		
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody ServicoNewDTO objDto, @PathVariable Integer id){
+		
+		objDto.setId(id);
+		
+		Servico obj = service.fromDTO(objDto);
+		
+		obj.setId(id);
+		
+		obj = service.update(obj);
 		
 		return ResponseEntity.noContent().build();
 		

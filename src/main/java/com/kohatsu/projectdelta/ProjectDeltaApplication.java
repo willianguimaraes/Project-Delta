@@ -66,14 +66,14 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 		profissionalRepository.saveAll(Arrays.asList(pro1, pro2));
 		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
 		
-		/*Servico serv1 = new Servico(null, "Pilates", "Dar aula de pilates", pro1);
+		Servico serv1 = new Servico(null, "Pilates", "Dar aula de pilates", pro1);
 		Servico serv2 = new Servico(null, "Instrutor", "Auxiliar as atividades com os alunos", pro2);
 		
 		pro1.getServicos().addAll(Arrays.asList(serv2));
-		pro2.getServicos().addAll(Arrays.asList(serv1));*/
+		pro2.getServicos().addAll(Arrays.asList(serv1));
 		
 		
-		/*servicoRepository.saveAll(Arrays.asList(serv1, serv2));*/
+		servicoRepository.saveAll(Arrays.asList(serv1, serv2));
 		
 		
 		
@@ -93,13 +93,14 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 		/*cli1.getTelefones().addAll(Arrays.asList(tel1));
 		cli2.getTelefones().addAll(Arrays.asList(tel4));*/
 		
+
 		
 		telefoneRepository.saveAll(Arrays.asList(tel1,tel4));
 			
 		
 		
 		SimpleDateFormat fd = new SimpleDateFormat("dd/MM/yyyy");
-		SimpleDateFormat ft = new SimpleDateFormat("HH:mm");
+		SimpleDateFormat ft = new SimpleDateFormat("hh:mm");
 		
 		Agendamento agend1 = new Agendamento(null, Semanas.SEGUNDA.getCod(), fd.parse("13/03/2018"), ft.parse("15:50"), pro1, cli1);
 		Agendamento agend2 = new Agendamento(null, Semanas.SEGUNDA.getCod(), fd.parse("13/03/2018"), ft.parse("15:50"), pro2, cli2);
