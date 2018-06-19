@@ -91,12 +91,40 @@ public class AgendamentoService {
 	
 	public Agendamento fromDTO(@Valid AgendamentoNewDTO objDto) {
 		
-		Profissional profissional = profissionalService.find(objDto.getIdProf());
-		Cliente cliente = clienteService.find(objDto.getIdClient());
+		if(objDto.getId() == null) {
+			
+			Profissional profissional = profissionalService.find(objDto.getIdProf());
+			Cliente cliente = clienteService.find(objDto.getIdClient());
 
-		Agendamento agend = new Agendamento(null, objDto.getSemana(), objDto.getDia(), objDto.getHorario(), profissional, cliente);
+			Agendamento agend = new Agendamento(null, objDto.getSemana(), objDto.getDia(), objDto.getHorario(), profissional, cliente);
+			
+			return agend;
+			
+		}else {
+			
+			Profissional profissional = profissionalService.find(objDto.getIdProf());
+			Cliente cliente = clienteService.find(objDto.getIdClient());
+
+			Agendamento agend = new Agendamento(objDto.getId(), objDto.getSemana(), objDto.getDia(), objDto.getHorario(), profissional, cliente);
+			
+			return agend;
+			
+		}
 		
-		return agend;
+	}
+	
+	public Agendamento update(Agendamento obj) {
+		
+		Agendamento newObj =  find(obj.getId());
+		
+		newObj.setId(obj.getId());
+		newObj.setSemana(obj.getSemana());
+		newObj.setDia(obj.getDia());
+		newObj.setHorario(obj.getHorario());
+		newObj.setCliente(obj.getCliente());
+		newObj.setProfissional(obj.getProfissional());
+		
+		return repo.save(newObj);
 		
 	}
 

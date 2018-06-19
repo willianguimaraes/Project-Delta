@@ -15,7 +15,7 @@ public class AgendamentoDTO implements Serializable{
 	
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dia;
-	@JsonFormat(pattern="hh:mm")
+	@JsonFormat(pattern="HH:mm")
 	private Date horario;
 	
 	public AgendamentoDTO() {}

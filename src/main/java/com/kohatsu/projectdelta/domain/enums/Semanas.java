@@ -4,11 +4,11 @@ package com.kohatsu.projectdelta.domain.enums;
 public enum Semanas {
 
 		DOMINGO(1, "Domingo"),
-		SEGUNDA(2, "Segunda-Feira"),
-		TERCA(3, "Terça-Feira"),
-		QUARTA(4, "Quarta-Feira"),
-		QUINTA(5, "Quinta-Feira"),
-		SEXTA(6, "Sexta-Feira"),
+		SEGUNDA_FEIRA(2, "Segunda-Feira"),
+		TERCA_FEIRA(3, "Terça-Feira"),
+		QUARTA_FEIRA(4, "Quarta-Feira"),
+		QUINTA_FEIRA(5, "Quinta-Feira"),
+		SEXTA_FEIRA(6, "Sexta-Feira"),
 		SABADO(7, "Sábado");
 	
 	private int cod;

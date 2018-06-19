@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.kohatsu.projectdelta.domain.Endereco;
 import com.kohatsu.projectdelta.domain.Profissional;
 import com.kohatsu.projectdelta.domain.Servico;
 import com.kohatsu.projectdelta.dto.ServicoNewDTO;
