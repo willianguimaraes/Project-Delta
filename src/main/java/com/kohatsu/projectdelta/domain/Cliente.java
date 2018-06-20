@@ -34,8 +34,9 @@ public class Cliente implements Serializable{
 	private Endereco endereco;
 
 	
-	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
-	private List<Telefone> telefones = new ArrayList<>();
+	@OneToOne
+	@JoinColumn(name="telefone_id")
+	private Telefone telefone;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
@@ -46,13 +47,14 @@ public class Cliente implements Serializable{
 		super();
 	}
 
-	public Cliente(Integer id, String nome, char sexo ,String cpf, Endereco endereco) {
+	public Cliente(Integer id, String nome, char sexo ,String cpf, Endereco endereco, Telefone telefone) {
 		super();
 		this.id=id;
 		this.nome = nome;
 		this.sexo = sexo;
 		this.cpf = cpf;
 		this.endereco = endereco;
+		this.telefone = telefone;
 	}
 
 	
@@ -96,12 +98,12 @@ public class Cliente implements Serializable{
 		this.endereco = endereco;
 	}
 
-	public List<Telefone> getTelefones() {
-		return telefones;
+	public Telefone getTelefone() {
+		return telefone;
 	}
 
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
 	}
 
 	public List<Agendamento> getAgendamentos() {

@@ -47,24 +47,22 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 		
 		Endereco end2 = new Endereco(null, null, null, null, null, null);
 		Endereco end3 = new Endereco(null, "Rua Doutor Mário Campos", "1500", null, "Parigot de Souza 2", "86082360");
-		Endereco end1 = new Endereco(null, "Rua Maria Madalena", "124", null, "Jardim Gayon", "86039380");
-		Endereco end4 = new Endereco(null, "Rua Doutor Mário Campos", "1500", null, "Parigot de Souza 2", "86082360");
 		
-		Profissional pro1 = new Profissional(null, "Anderson", "62828648010", "anderson@gmail.com", end2);
-		Profissional pro2 = new Profissional(null, "Anderson", "62828648010", "anderson@gmail.com", end3);
+		Telefone tel2 = new Telefone(null, "43", "996295333");
+		Telefone tel3 = new Telefone(null, "43", "996295333");
+		
+		enderecoRepository.saveAll(Arrays.asList(end2, end3));
+		telefoneRepository.saveAll(Arrays.asList(tel2, tel3));
+		
+		Profissional pro1 = new Profissional(null, "Anderson", "62828648010", "anderson@gmail.com", end2, tel2);
+		Profissional pro2 = new Profissional(null, "Anderson", "62828648010", "anderson@gmail.com", end3, tel3);
 		
 		end2.getProfissionais().addAll(Arrays.asList(pro1));
 		end3.getProfissionais().addAll(Arrays.asList(pro2));
+		tel2.getProfissionais().addAll(Arrays.asList(pro1));
+		tel3.getProfissionais().addAll(Arrays.asList(pro2));
 		
-		Cliente cli1 = new Cliente(null, "Alisson", 'M',"35447310881", end1);
-		Cliente cli2 = new Cliente(null, "Willian", 'M',"56242986094", end4);
-		
-		end1.getClientes().addAll(Arrays.asList(cli1));
-		end4.getClientes().addAll(Arrays.asList(cli2));
-		
-		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3, end4));
 		profissionalRepository.saveAll(Arrays.asList(pro1, pro2));
-		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
 		
 		Servico serv1 = new Servico(null, "Pilates", "Dar aula de pilates", pro1);
 		Servico serv2 = new Servico(null, "Instrutor", "Auxiliar as atividades com os alunos", pro2);
@@ -72,34 +70,29 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 		pro1.getServicos().addAll(Arrays.asList(serv2));
 		pro2.getServicos().addAll(Arrays.asList(serv1));
 		
-		
 		servicoRepository.saveAll(Arrays.asList(serv1, serv2));
+		profissionalRepository.saveAll(Arrays.asList(pro1, pro2));
 		
+		Endereco end1 = new Endereco(null, "Rua Maria Madalena", "124", null, "Jardim Gayon", "86039380");
+		Endereco end4 = new Endereco(null, "Rua Doutor Mário Campos", "1500", null, "Parigot de Souza 2", "86082360");
 		
+		Telefone tel1 = new Telefone(null, "43", "988144287");
+		Telefone tel4 = new Telefone(null, "43", "996295333");
 		
-		Telefone tel1 = new Telefone(null, "43", "988144287", cli1);
-		/*Telefone tel2 = new Telefone(null, "43", "996295333", pro1);
-		Telefone tel3 = new Telefone(null, "43", "996295333", pro2);*/
-		Telefone tel4 = new Telefone(null, "43", "996295333", cli2);
-		
-		
-		
-		
-		
-		
-		/*pro2.getTelefones().addAll(Arrays.asList(tel3));*/
-		/*pro1.getEnderecos().addAll(Arrays.asList(end2));
-		pro2.getEnderecos().addAll(Arrays.asList(end3));*/
-		/*cli1.getTelefones().addAll(Arrays.asList(tel1));
-		cli2.getTelefones().addAll(Arrays.asList(tel4));*/
-		
-
-		
+		enderecoRepository.saveAll(Arrays.asList(end1, end4));
 		telefoneRepository.saveAll(Arrays.asList(tel1,tel4));
-			
 		
+		Cliente cli1 = new Cliente(null, "Alisson", 'M',"35447310881", end1, tel1);
+		Cliente cli2 = new Cliente(null, "Willian", 'M',"56242986094", end4, tel4);
 		
-		SimpleDateFormat fd = new SimpleDateFormat("dd/MM/yyyy");
+		end1.getClientes().addAll(Arrays.asList(cli1));
+		end4.getClientes().addAll(Arrays.asList(cli2));
+		tel1.getClientes().addAll(Arrays.asList(cli1));
+		tel4.getClientes().addAll(Arrays.asList(cli2));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		
+		/*SimpleDateFormat fd = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat ft = new SimpleDateFormat("HH:mm");
 		
 		Agendamento agend1 = new Agendamento(null, Semanas.SEGUNDA_FEIRA.getCod(), fd.parse("13/03/2018"), ft.parse("15:50"), pro1, cli1);
@@ -113,7 +106,7 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 
 		agendamentoRepository.saveAll(Arrays.asList(agend1, agend2, agend3));
 		profissionalRepository.saveAll(Arrays.asList(pro1, pro2));
-		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));*/
 		
 	}
 	

@@ -11,6 +11,7 @@ public class ProfissionalNewDTO implements Serializable{
 	private String cpf;
 	private String email;
 	
+	private Integer idTel;
 	private String ddd;
 	private String numeroTel;
 	
@@ -98,6 +99,11 @@ public class ProfissionalNewDTO implements Serializable{
 	public void setIdEnd(Integer idEnd) {
 		this.idEnd = idEnd;
 	}
-	
+	public Integer getIdTel() {
+		return idTel;
+	}
+	public void setIdTel(Integer idTel) {
+		this.idTel = idTel;
+	}
 	
 }

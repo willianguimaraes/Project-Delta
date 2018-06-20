@@ -1,6 +1,5 @@
 package com.kohatsu.projectdelta.services;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +49,7 @@ public class ClienteService {
 		obj.setId(null);
 		obj = repo.save(obj);
 		enderecoRepository.save(obj.getEndereco());
-		telefoneRepository.saveAll(obj.getTelefones());
+		telefoneRepository.save(obj.getTelefone());
 		
 		return obj;
 		
@@ -80,25 +79,22 @@ public class ClienteService {
 			
 			Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumeroEnd(), objDto.getComplemento(), 
 					objDto.getBairro(),	objDto.getCep());
-			Cliente cliente = new Cliente(null, objDto.getNome(), objDto.getSexo(), objDto.getCpf(), endereco);
-			Telefone telefone = new Telefone(null, objDto.getDdd(), objDto.getNumeroTel(), cliente);
+			Telefone telefone = new Telefone(null, objDto.getDdd(), objDto.getNumeroTel());
+			Cliente cliente = new Cliente(null, objDto.getNome(), objDto.getSexo(), objDto.getCpf(), endereco, telefone);
 			
 			endereco.getClientes().addAll(Arrays.asList(cliente));
-			cliente.getTelefones().add(telefone);
+			telefone.getClientes().addAll(Arrays.asList(cliente));
 			
 			return cliente;
 			
 		} else {
 			
 			Endereco endereco = new Endereco(objDto.getIdEnd(), objDto.getLogradouro(), objDto.getNumeroEnd(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep());
-			System.out.println(endereco.getId());
-			Cliente cliente = new Cliente(objDto.getId(), objDto.getNome(), objDto.getSexo(), objDto.getCpf(), endereco);
-			System.out.println(cliente.getId());
-			Telefone telefone = new Telefone(objDto.getIdTel(), objDto.getDdd(), objDto.getNumeroTel(), cliente);
-			System.out.println(telefone.getId());
+			Telefone telefone = new Telefone(objDto.getIdTel(), objDto.getDdd(), objDto.getNumeroTel());
+			Cliente cliente = new Cliente(objDto.getId(), objDto.getNome(), objDto.getSexo(), objDto.getCpf(), endereco, telefone);
 			
 			endereco.getClientes().addAll(Arrays.asList(cliente));
-			cliente.getTelefones().addAll(Arrays.asList(telefone));
+			telefone.getClientes().addAll(Arrays.asList(cliente));
 			
 			return cliente;
 			
@@ -106,40 +102,12 @@ public class ClienteService {
 		
 	}
 
-	public Cliente update(Cliente obj, ClienteNewDTO objDto) {
+	public Cliente update(Cliente obj) {
 		
 		
 		Cliente newObj =  find(obj.getId());
 		Optional<Endereco> end = enderecoRepository.findById(obj.getEndereco().getId());
-		/*List<Telefone> tels = telefoneRepository.findAll();
-		
-		for(int i = 0; i < tels.size(); i++) {
-			
-			System.out.println(tels.get(i).getId());
-			
-		}
-		
-		
-		
-		for(Telefone telefone: tels) {
-			
-			if(objDto.getIdTel() == telefone.getId()) {
-				
-				telefone.setId(objDto.getIdTel());
-				telefone.setDdd(objDto.getDdd());
-				telefone.setNumero(objDto.getNumeroTel());
-				
-				tels.add(telefone);
-				
-			}
-			
-		}*/
-		
-		
-		
-		/*tel.get().setId(objDto.getIdTel());
-		tel.get().setDdd(objDto.getDdd());
-		tel.get().setNumero(objDto.getNumeroTel());*/
+		Optional<Telefone> tel = telefoneRepository.findById(obj.getTelefone().getId());
 		
 		end.get().setId(obj.getEndereco().getId());
 		end.get().setLogradouro(obj.getEndereco().getLogradouro());
@@ -148,14 +116,18 @@ public class ClienteService {
 		end.get().setBairro(obj.getEndereco().getBairro());
 		end.get().setCep(obj.getEndereco().getCep());
 		
+		tel.get().setId(obj.getTelefone().getId());
+		tel.get().setDdd(obj.getTelefone().getDdd());
+		tel.get().setNumero(obj.getTelefone().getNumero());
+		
 		newObj.setNome(obj.getNome());
 		newObj.setSexo(obj.getSexo());
 		newObj.setCpf(obj.getCpf());
 		newObj.setEndereco(end.get());
-		/*newObj.setTelefones(tels);*/
+		newObj.setTelefone(tel.get());
 		
 		enderecoRepository.save(end.get());
-		/*telefoneRepository.saveAll(tels);*/
+		telefoneRepository.save(tel.get());
 		return repo.save(newObj);
 		
 	}

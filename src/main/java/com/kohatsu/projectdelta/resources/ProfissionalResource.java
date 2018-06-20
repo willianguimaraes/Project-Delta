@@ -15,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.kohatsu.projectdelta.domain.Cliente;
 import com.kohatsu.projectdelta.domain.Profissional;
-import com.kohatsu.projectdelta.dto.ProfissionalNewDTO;
-import com.kohatsu.projectdelta.dto.ClienteNewDTO;
 import com.kohatsu.projectdelta.dto.ProfissionalDTO;
+import com.kohatsu.projectdelta.dto.ProfissionalNewDTO;
 import com.kohatsu.projectdelta.services.ProfissionalService;
 
 @RestController

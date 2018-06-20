@@ -1,13 +1,15 @@
 package com.kohatsu.projectdelta.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,37 +24,28 @@ public class Telefone implements Serializable{
 	private String ddd;
 	private String numero;
 	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name="cliente_id")
-	private Cliente cliente;
 	
 	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name="profissional_id")
-	private Profissional profissional;
+	@OneToMany(mappedBy="telefone", cascade=CascadeType.ALL)
+	private List<Cliente> clientes = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="telefone", cascade=CascadeType.ALL)
+	private List<Profissional> profissionais = new ArrayList<>();
 	
 	public Telefone() {
 		super();
 	}
 
 
-	public Telefone(Integer id, String ddd, String numero, Cliente cliente) {
+	public Telefone(Integer id, String ddd, String numero) {
 		super();
 		this.id = id;
 		this.ddd = ddd;
 		this.numero = numero;
-		this.cliente = cliente;
 	}
 	
-	public Telefone(Integer id, String ddd, String numero, Profissional profissional) {
-		super();
-		this.id = id;
-		this.ddd = ddd;
-		this.numero = numero;
-		this.profissional = profissional;
-	}
-
+	
 
 	public Integer getId() {
 		return id;
@@ -83,6 +76,22 @@ public class Telefone implements Serializable{
 		this.numero = numero;
 	}
 
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+	
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+	
+	public List<Profissional> getProfissionais() {
+		return profissionais;
+	}
+	
+	public void setProfissionais(List<Profissional> profissionais) {
+		this.profissionais = profissionais;
+	}
+	
 
 	@Override
 	public int hashCode() {

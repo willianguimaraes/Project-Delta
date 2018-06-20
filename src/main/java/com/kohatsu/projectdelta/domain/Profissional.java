@@ -28,8 +28,9 @@ public class Profissional implements Serializable{
 	private String email;
 	
 	
-	@OneToMany(mappedBy="profissional", cascade=CascadeType.ALL)
-	private List<Telefone> telefones = new ArrayList<>();
+	@OneToOne
+	@JoinColumn(name="telefone_id")
+	private Telefone telefone;
 	
 	
 	@OneToOne
@@ -48,13 +49,14 @@ public class Profissional implements Serializable{
 	}
 
 
-	public Profissional(Integer id, String nome, String cpf, String email, Endereco endereco) {
+	public Profissional(Integer id, String nome, String cpf, String email, Endereco endereco, Telefone telefone) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
 		this.endereco = endereco;
+		this.telefone = telefone;
 	}
 
 
@@ -97,12 +99,12 @@ public class Profissional implements Serializable{
 		this.email = email;
 	}
 
-	public List<Telefone> getTelefones() {
-		return telefones;
+	public Telefone getTelefone() {
+		return telefone;
 	}
 	
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
 	}
 
 	public Endereco getEndereco() {
