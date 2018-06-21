@@ -15,27 +15,44 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kohatsu.projectdelta.domain.Cliente;
+import com.kohatsu.projectdelta.domain.Profissional;
 import com.kohatsu.projectdelta.dto.ClienteNewDTO;
 import com.kohatsu.projectdelta.services.ClienteService;
+import com.kohatsu.projectdelta.services.ProfissionalService;
 
 @RestController
-@RequestMapping(value="/aluno")
+/*@RequestMapping(value="/aluno")*/
 public class PaginacaoResource {
 
 	@Autowired
 	private ClienteService service;
+	@Autowired
+	private ProfissionalService profissionalService;
 	
-	private ClienteNewDTO client;
-	private Cliente c;
+/*	private ClienteNewDTO client;
+	private Cliente c;*/
 	
-	@GetMapping(value="/listarAluno/{idAluno}")
-	public ModelAndView cadastrarAluno(@PathVariable("idAluno") Integer id) {
+	@RequestMapping(value="/aluno/listarAluno", method=RequestMethod.GET)
+	public ModelAndView listarAluno() {
 		
-		c = service.find(id);
+		List<Cliente> list = service.findAll();
 		
 		ModelAndView mv = new ModelAndView("aluno/listarAluno");
 		
-		mv.addObject("cliente", c);
+		mv.addObject("lista", list);
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping(value="/profissional/listarProfissional", method=RequestMethod.GET)
+	public ModelAndView listarProfissional() {
+		
+		List<Profissional> list = profissionalService.findAll();
+		
+		ModelAndView mv = new ModelAndView("profissional/listarProfissional");
+		
+		mv.addObject("lista", list);
 		
 		return mv;
 		

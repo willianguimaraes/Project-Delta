@@ -4,7 +4,7 @@
 
 <head>
 
-<title>Lista de Aluno</title>
+<title>Lista de Profissional</title>
 
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -24,7 +24,7 @@
 
 	<div class="well">
 
-		<h1>Lista de Cliente</h1>
+		<h1>Lista de Profissional</h1>
 
 		<div class="row">
 
@@ -32,11 +32,12 @@
 
 				
 
-				<table th:each="clientes : ${lista}" class="table">
-				    <td th:text="${clientes.id}"></td>
-				    <td th:text="${clientes.nome}"></td>
-				    <td th:text="${clientes.cpf}"></td>
-				    <td th:text="${clientes.telefone.numero}"></td>
+				<table th:each="profissionais : ${lista}" class="table">
+				    <td th:text="${profissionais.id}"></td>
+				    <td th:text="${profissionais.nome}"></td>
+				    <td th:text="${profissionais.cpf}"></td>
+				    <td th:text="${profissionais.email}"></td>
+				    <td th:text="${profissionais.telefone.numero}"></td>
 				    
 				</table>
 
