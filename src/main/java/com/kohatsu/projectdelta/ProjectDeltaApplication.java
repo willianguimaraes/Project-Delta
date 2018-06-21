@@ -45,7 +45,7 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Endereco end2 = new Endereco(null, null, null, null, null, null);
+		/*Endereco end2 = new Endereco(null, null, null, null, null, null);
 		Endereco end3 = new Endereco(null, "Rua Doutor Mário Campos", "1500", null, "Parigot de Souza 2", "86082360");
 		
 		Telefone tel2 = new Telefone(null, "43", "996295333");
@@ -106,7 +106,7 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 
 		agendamentoRepository.saveAll(Arrays.asList(agend1, agend2, agend3));
 		profissionalRepository.saveAll(Arrays.asList(pro1, pro2));
-		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));*/
 		
 	}
 	

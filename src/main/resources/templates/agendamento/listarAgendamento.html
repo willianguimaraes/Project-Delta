@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<title>Lista de Agendamento</title>
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<!-- Font Icons -->
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+ 
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+	<div class="well">
+
+		<h1>Lista de Agendamento</h1>
+
+		<div class="row">
+
+			<div class="col-8">
+
+				
+
+				<table th:each="agendamentos : ${lista}" class="table">
+				    <td th:text="${agendamentos.id}"></td>
+				    <td th:text="${agendamentos.semana}"></td>
+				    <td th:text="${agendamentos.dia}"></td>
+				    <td th:text="${agendamentos.horario}"></td>
+				</table>
+
+			</div>
+
+		</div>
+		
+	</div>
+
+</div>
+
+
+
+
+
+
+
+</body>
+
+</html>
