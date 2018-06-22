@@ -32,19 +32,37 @@
 
 				
 
-				<table th:each="clientes : ${lista}" class="table">
-				    <td th:text="${clientes.id}"></td>
+				<table  class="table">
+				    <thead>
+				    <tr>
+				    	<th>ID</th>
+				    	<th>Nome</th>
+				    	<th>CPF</th>
+				    	<th>Numero</th>
+				    </tr>
+				    </thead>
+				    
+				    <tbody th:each="clientes : ${lista}">
+				    <tr>
+				    
+				    <td  th:text="${clientes.id}"></td>
 				    <td th:text="${clientes.nome}"></td>
 				    <td th:text="${clientes.cpf}"></td>
 				    <td th:text="${clientes.telefone.numero}"></td>
 				    
+				    <td th:button type="submit" class="btn btn-info">Editar</button></td>
+					<td th:button type="submit" class="btn btn-danger">Editar</button></td>
+					</tr>
+					</tbody>
 				</table>
-
+					
 			</div>
 
 		</div>
-		
-	</div>
+
+			<a href="/home/index.html" th:href="@{http://localhost:8080/home}"><button
+					class="btn btn-primary">Home</button></a>
+		</div>
 
 </div>
 
