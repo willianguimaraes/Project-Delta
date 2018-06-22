@@ -6,102 +6,175 @@
 
 <title>Cadastrar Profissional</title>
 
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 <!-- Font Icons -->
-    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
- 
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/css/estilo.css}" />
 
 </head>
 
 <body>
+	<header>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+
+				<div class="navbar-header">
+
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#" th:href="@{/home}">Bruna</a>
+				</div>
+				<div id="collapse-navbar bs-example-navbar-collapse-1"
+					class="collapse navbar-collapse">
+					<ul class="nav nav-pills nav-justified">
+						<li><a href="product/list.html"
+							th:href="@{/aluno/cadastrarAluno}">Cadastrar Aluno</a></li>
+
+						<li><a href="order/list.html" th:href="@{/aluno/listarAluno}">Listar
+								Aluno</a></li>
+
+						<li><a href="subscribe.html"
+							th:href="@{/profissional/cadastrarProfissional}">Cadastrar
+								Profissional</a></li>
+
+						<li><a href="userprofile.html"
+							th:href="@{/profissional/listarProfissional}">Listar
+								Profissionais</a></li>
+
+						<li><a href="userprofile.html"
+							th:href="@{/servico/cadastrarServico}">Cadastrar Servicos</a></li>
+
+						<li><a href="userprofile.html"
+							th:href="@{/servico/listarServico}">Listar Servicos</a></li>
+
+						<li><a href="userprofile.html"
+							th:href="@{/agendamento/cadastrarAgendamento}">Cadastrar
+								Agendamento</a></li>
 
 
+						<li><a href="userprofile.html"
+							th:href="@{/agendamento/listarAgendamento}">Listar
+								Agendamentos</a>
+						<li>
+					</ul>
+				</div>
+			</div>
 
-	<form action="#" th:action="@{/profissional/cadastrarProfissional}" th:object="${profissional}" method="post">
-	 
-	 <div class="container">
-		 <div class="well">
-		 
-		 	<h2>Cadastro de Profissional</h2>
-		 
-		 </div>
-	 
-	 <div class="row">
-
-	 	<div class="col-4">
-			<label>Nome:</label>
-			<input type="text" th:field="${profissional.nome}" />
+		</nav>
+		<div class="conteudo-header "></div>
+	</header>
+	<section id="conteudo">
+		<div class="container">
+		<fieldset>
+			<legend>Dados Professor</legend>
+			<form class="form-inline" th:action="@{/profissional/cadastrarProfissional}"
+				th:object="${profissional}" method="post">
+				<div class="row">
+				
+				<fieldset >
+				<legend>Professor</legend>
+					<div class="form-group col-md-6">
+						<label for="exampleInputName2">Name</label> <input type="text"
+							th:field="${profissional.nome}" class="form-control"
+							id="exampleInputName2" placeholder="Jane Doe">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="cpf">CPF</label> <input type="text"
+							th:field="${profissional.cpf}" class="form-control" id="cpf"
+							placeholder="999999999">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="email">Email</label> <input type="email"
+							th:field="${profissional.email}" class="form-control" id="email"
+							placeholder="seunome@email.com">
+					</div>
+					
+				</fieldset>
+				</div>
+			</form>
+			
+			<form class="form-inline" th:action="@{/profissional/cadastrarProfissional}"
+				th:object="${profissional}" method="post">
+				<fieldset >
+				<legend>Telefone</legend>
+				<div class="row">
+				<div class="form-group col-md-6">
+					<label for="ddd">DDD</label> <input type="text"
+						th:field="${profissional.ddd}" class="form-control" id="ddd"
+						placeholder="Ex. 43">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="telefone">Telefone</label> <input type="tel"
+						th:field="${profissional.numeroTel}" class="form-control" id="telefone"
+						placeholder="Ex. 989899898">
+				</div>
+				</div>
+				</fieldset>
+			</form>
+		
+			<form class="form-inline" th:action="@{/profissional/cadastrarProfissional}"
+				th:object="${profissional}" method="post">
+				<fieldset >
+				<legend>Endereco</legend>
+				<div class="row">
+				
+				<div class="form-group col-md-4">
+					<label for="logradouro">Logradouro</label> <input type="text"
+						th:field="${profissional.logradouro}" class="form-control" id="logradouro"
+						placeholder="Rua Exemplo">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="numero">Numero</label> <input type="number"
+						th:field="${profissional.numeroEnd}" class="form-control" id="numero"
+						placeholder="Ex. 123">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="complemento">Complemento</label> <input type="text"
+						th:field="${profissional.complemento}" class="form-control" id="complemento"
+						placeholder="apto 1234">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="bairro">Bairro</label> <input type="text"
+						th:field="${profissional.bairro}" class="form-control" id="bairro"
+						placeholder="Jd. Exemplo">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="cep">CEP</label> <input type="text"
+						th:field="${profissional.cep}" class="form-control" id="cep"
+						placeholder="86090000">
+				</div>
+				
+			</div>
+			</fieldset>
+			</form>
+		</fieldset>
+		<div class="row">
+			<div class="col-md-10"></div>
+			<div class="col-md-2">
+				<button type="submit" class="btn btn-primary">Cadastrar</button>
+			</div>
 		</div>
-		<div class="col-4">
-			<label>CPF:</label>
-			<input type="text" th:field="${profissional.cpf}"/>
-		</div>
-		<div class="col-4">
-			<label>Email:</label>
-			<input type="text" th:field="${profissional.email}"/>
 		</div>
 		
-	</div>
+		
 	
-	<br/>
-	
-	<div class="row">
-	
-		<div class="col-4">
-			<label>DDD:</label>
-			<input type="text" th:field="${profissional.ddd}"/>
-		</div>
-		<div class="col-4">
-			<label>Telefone:</label>
-			<input type="text" th:field="${profissional.numeroTel}"/>
-		</div>
-	
-	</div>
-	
-	<br/>
-	
-	<div class="row">
-	
-		<label>Endereço</label>
-		<div class="col-4">
-			<label>Logradouro:</label>
-			<input type="text" th:field="${profissional.logradouro}"/>
-		</div>
-		<div class="col-4">
-			<label>Número:</label>
-			<input type="text" th:field="${profissional.numeroEnd}"/>
-		</div>
-		<div class="col-4">
-			<label>Complemento:</label>
-			<input type="text" th:field="${profissional.complemento}"/>			
-		</div>
-		<div class="col-4">
-			<label>Bairro:</label>
-			<input type="text" th:field="${profissional.bairro}"/>
-		</div>
-		<div class="col-4">
-			<label>Cep:</label>
-			<input type="text" th:field="${profissional.cep}"/>
-		</div>
-	
-	</div>
-	
-	<br/>
-	
-	<button type="submit">Cadastrar</button>
-	 
-	 </div>
-	 
-	</form>
 
+	</section>
+	<footer> Desenvolvido pelo Grupo 6 - Delta UP! </footer>
 
+	<script src="/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"></script>
+	<script src="/js/navbra-animation-fix.js"
+		th:href="@{/js/navbra-animation-fix.js}"></script>
+	<script src="/jquery/jquery.js" th:href="@{/jquery/jquery.js}"></script>
 
-
-
-</body>
-
+	</script>
 </html>

@@ -19,6 +19,7 @@ public class AgendamentoNewDTO implements Serializable{
 	
 	private Integer idProf;
 	private Integer idClient;
+	private Integer idServico;
 	
 	
 	public AgendamentoNewDTO() {
@@ -72,7 +73,13 @@ public class AgendamentoNewDTO implements Serializable{
 	public void setIdClient(Integer idClient) {
 		this.idClient = idClient;
 	}
-	
+	public Integer getIdServico() {
+		return idClient;
+	}
+
+	public void setIdServico(Integer idServico) {
+		this.idServico = idServico;
+	}
 	
 
 }

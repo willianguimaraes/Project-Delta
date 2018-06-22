@@ -80,7 +80,7 @@ public class ClienteService {
 			Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumeroEnd(), objDto.getComplemento(), 
 					objDto.getBairro(),	objDto.getCep());
 			Telefone telefone = new Telefone(null, objDto.getDdd(), objDto.getNumeroTel());
-			Cliente cliente = new Cliente(null, objDto.getNome(), objDto.getSexo(), objDto.getCpf(), endereco, telefone);
+			Cliente cliente = new Cliente(null, objDto.getNome(), objDto.getSexo(), objDto.getCpf(),objDto.getEmail(), endereco, telefone);
 			
 			endereco.getClientes().addAll(Arrays.asList(cliente));
 			telefone.getClientes().addAll(Arrays.asList(cliente));
@@ -91,7 +91,7 @@ public class ClienteService {
 			
 			Endereco endereco = new Endereco(objDto.getIdEnd(), objDto.getLogradouro(), objDto.getNumeroEnd(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep());
 			Telefone telefone = new Telefone(objDto.getIdTel(), objDto.getDdd(), objDto.getNumeroTel());
-			Cliente cliente = new Cliente(objDto.getId(), objDto.getNome(), objDto.getSexo(), objDto.getCpf(), endereco, telefone);
+			Cliente cliente = new Cliente(objDto.getId(), objDto.getNome(), objDto.getSexo(), objDto.getCpf(),objDto.getEmail(), endereco, telefone);
 			
 			endereco.getClientes().addAll(Arrays.asList(cliente));
 			telefone.getClientes().addAll(Arrays.asList(cliente));
@@ -123,6 +123,7 @@ public class ClienteService {
 		newObj.setNome(obj.getNome());
 		newObj.setSexo(obj.getSexo());
 		newObj.setCpf(obj.getCpf());
+		newObj.setEmail(obj.getEmail());
 		newObj.setEndereco(end.get());
 		newObj.setTelefone(tel.get());
 		

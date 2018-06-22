@@ -26,8 +26,9 @@ public class Cliente implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private char sexo;
+	private String sexo;
 	private String cpf;
+	private String email;
 	
 	@OneToOne
 	@JoinColumn(name="endereco_id")
@@ -47,12 +48,13 @@ public class Cliente implements Serializable{
 		super();
 	}
 
-	public Cliente(Integer id, String nome, char sexo ,String cpf, Endereco endereco, Telefone telefone) {
+	public Cliente(Integer id,String email, String nome, String sexo ,String cpf, Endereco endereco, Telefone telefone) {
 		super();
 		this.id=id;
 		this.nome = nome;
 		this.sexo = sexo;
 		this.cpf = cpf;
+		this.email = email;
 		this.endereco = endereco;
 		this.telefone = telefone;
 	}
@@ -69,16 +71,24 @@ public class Cliente implements Serializable{
 	public String getNome() {
 		return nome;
 	}
+	
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	public String getEmail() {
+		return nome;
+	}
 	
-	public char getSexo() {
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getSexo() {
 		return sexo;
 	}
 	
-	public void setSexo(char sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 

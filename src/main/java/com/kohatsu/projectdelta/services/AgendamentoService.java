@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.kohatsu.projectdelta.domain.Agendamento;
 import com.kohatsu.projectdelta.domain.Cliente;
 import com.kohatsu.projectdelta.domain.Profissional;
+import com.kohatsu.projectdelta.domain.Servico;
 import com.kohatsu.projectdelta.dto.AgendamentoNewDTO;
 import com.kohatsu.projectdelta.exceptions.ObjectNotFoundException;
 import com.kohatsu.projectdelta.repositories.AgendamentoRepository;
@@ -26,6 +27,8 @@ public class AgendamentoService {
 	private ProfissionalService profissionalService;
 	@Autowired
 	private ClienteService clienteService;
+	@Autowired
+	private ServicoService servicoService;
 	
 	public Agendamento find(Integer id) {
 			
@@ -57,7 +60,7 @@ public class AgendamentoService {
 		obj.setHorario(obj.getHorario());
 		obj.setProfissional(profissionalService.find(obj.getProfissional().getId()));
 		obj.setCliente(clienteService.find(obj.getCliente().getId()));
-		
+		obj.setServico(servicoService.find(obj.getServico().getId()));
 		obj = repo.save(obj);
 		
 		return obj;
@@ -95,8 +98,8 @@ public class AgendamentoService {
 			
 			Profissional profissional = profissionalService.find(objDto.getIdProf());
 			Cliente cliente = clienteService.find(objDto.getIdClient());
-
-			Agendamento agend = new Agendamento(null, objDto.getSemana(), objDto.getDia(), objDto.getHorario(), profissional, cliente);
+			Servico servico = servicoService.find(objDto.getIdServico());
+			Agendamento agend = new Agendamento(null, objDto.getSemana(), objDto.getDia(), objDto.getHorario(), profissional, cliente, servico);
 			
 			return agend;
 			
@@ -104,8 +107,8 @@ public class AgendamentoService {
 			
 			Profissional profissional = profissionalService.find(objDto.getIdProf());
 			Cliente cliente = clienteService.find(objDto.getIdClient());
-
-			Agendamento agend = new Agendamento(objDto.getId(), objDto.getSemana(), objDto.getDia(), objDto.getHorario(), profissional, cliente);
+			Servico servico = servicoService.find(objDto.getIdServico());
+			Agendamento agend = new Agendamento(objDto.getId(), objDto.getSemana(), objDto.getDia(), objDto.getHorario(), profissional, cliente, servico);
 			
 			return agend;
 			
@@ -123,6 +126,7 @@ public class AgendamentoService {
 		newObj.setHorario(obj.getHorario());
 		newObj.setCliente(obj.getCliente());
 		newObj.setProfissional(obj.getProfissional());
+		newObj.setServico(obj.getServico());
 		
 		return repo.save(newObj);
 		

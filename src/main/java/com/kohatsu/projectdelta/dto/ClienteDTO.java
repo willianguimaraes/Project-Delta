@@ -10,8 +10,9 @@ public class ClienteDTO implements Serializable{
 	
 	private Integer id;
 	private String nome;
-	private char sexo;
+	private String sexo;
 	private String cpf;
+	private String email;
 	
 	
 	public ClienteDTO() {
@@ -25,6 +26,7 @@ public class ClienteDTO implements Serializable{
 		this.nome=obj.getNome();
 		this.sexo=obj.getSexo();
 		this.cpf=obj.getCpf();
+		this.email=obj.getEmail();
 		
 	}
 
@@ -49,15 +51,23 @@ public class ClienteDTO implements Serializable{
 	}
 
 
-	public char getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
 
 
-	public void setSexo(char sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
 
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getCpf() {
 		return cpf;

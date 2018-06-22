@@ -38,15 +38,18 @@ public class Agendamento implements Serializable{
 	@ManyToOne()
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
-		
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="servico_id")
+	private Servico servico;
 	
 	public Agendamento() {
 		
 	}
 
 
-	public Agendamento(Integer id, Integer semana, Date dia, Date horario, Profissional pro, Cliente cliente) {
+	public Agendamento(Integer id, Integer semana, Date dia, Date horario, Profissional pro, Cliente cliente,Servico servico) {
 		super();
 		this.id = id;
 		this.semana = semana;
@@ -54,7 +57,10 @@ public class Agendamento implements Serializable{
 		this.horario = horario;
 		this.profissional=pro;
 		this.cliente = cliente;
+		this.servico = servico;
 	}
+	
+
 
 
 	public Integer getId() {
@@ -66,7 +72,13 @@ public class Agendamento implements Serializable{
 		this.id = id;
 	}
 
-
+	public  Servico getServico() {
+		return servico;
+	}
+	public void setServico(Servico servico) {
+		this.servico = servico;
+	}
+	
 	public Semanas getSemana() {
 		return Semanas.toEnum(semana);
 	}
