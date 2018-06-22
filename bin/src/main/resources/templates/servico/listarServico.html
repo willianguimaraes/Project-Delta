@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<title>Lista de Serviço</title>
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<!-- Font Icons -->
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+ 
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+	<div class="well">
+
+		<h1>Lista de Serviço</h1>
+
+		<div class="row">
+
+			<div class="col-8">
+
+				
+
+				<table th:each="servicos : ${lista}" class="table">
+				    <td th:text="${servicos.id}"></td>
+				    <td th:text="${servicos.nome}"></td>
+				    <td th:text="${servicos.descricao}"></td>
+				    <td th:text="${servicos.profissional.nome}"></td>
+				</table>
+
+			</div>
+
+		</div>
+		
+	</div>
+
+</div>
+
+
+
+
+
+
+
+</body>
+
+</html>

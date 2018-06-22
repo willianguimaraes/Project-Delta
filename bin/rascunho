@@ -1,0 +1,60 @@
+   <link rel="stylesheet" th:href="../css/simple-line-icons.css"/>
+<!--<!-- CSS Animate -->
+    <link rel="stylesheet" th:href="../css/animate.css"/>
+<!-- Switchery -->
+    <link rel="stylesheet" th:href="../css/switchery.min.css">
+<!-- Custom styles for this theme -->
+    <link rel="stylesheet" th:href="../css/main.css">
+    
+<!-- ToDos  -->
+    <link rel="stylesheet" th:href="../css/todos.css">
+<!-- Morris  -->
+    <link rel="stylesheet" th:href="../css/morris.css">
+<!-- Fonts -->
+    <link th:href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link th:href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+<!-- Feature detection -->
+    <script src="../js/modernizr-2.6.2.min.js"></script>
+    
+    <!--Global JS-->
+	<script src="../jquery/jquery-1.10.2.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../jquery/jquery.navgoco.min.js"></script>
+    <script src="../js/waypoints.min.js"></script>
+    <script src="../js/switchery.min.js"></script>
+    <script src="../js/application.js"></script>
+<!--Page Level JS-->
+    <script src="../jquery/jquery.countTo.js"></script>
+    <script src="../js/skycons.js"></script>
+<!-- FlotCharts  -->
+    <script src="../jquery/jquery.flot.min.js"></script>
+    <script src="../jquery/jquery.flot.resize.min.js"></script>
+    <script src="../jquery/jquery.flot.canvas.min.js"></script>
+    <script src="../jquery/jquery.flot.image.min.js"></script>
+    <script src="../jquery/jquery.flot.categories.min.js"></script>
+    <script src="../jquery/jquery.flot.crosshair.min.js"></script>
+    <script src="../jquery/jquery.flot.errorbars.min.js"></script>
+    <script src="../jquery/jquery.flot.fillbetween.min.js"></script>
+    <script src="../jquery/jquery.flot.navigate.min.js"></script>
+    <script src="../jquery/jquery.flot.pie.min.js"></script>
+    <script src="../jquery/jquery.flot.selection.min.js"></script>
+    <script src="../jquery/jquery.flot.stack.min.js"></script>
+    <script src="../jquery/jquery.flot.symbol.min.js"></script>
+    <script src="../jquery/jquery.flot.threshold.min.js"></script>
+    <script src="../jquery/jquery.colorhelpers.min.js"></script>
+    <script src="../jquery/jquery.flot.time.min.js"></script>
+    <script src="../jquery/jquery.flot.example.js"></script>
+<!-- Morris  -->
+    <script src="../js/morris.min.js"></script>
+    <script src="../js/raphael.2.1.0.min.js"></script>
+<!-- ToDo List  -->
+    <script src="../js/todos.js"></script>
+<!--Load these page level functions-->
+    <script>
+    $(document).ready(function() {
+        app.timer();
+        app.map();
+        app.weather();
+        app.morrisPie();
+    });
+    </script>
