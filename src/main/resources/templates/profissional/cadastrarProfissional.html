@@ -74,99 +74,94 @@
 	</header>
 	<section id="conteudo">
 		<div class="container">
-		<fieldset>
-			<legend>Dados Professor</legend>
-			<form class="form-inline" th:action="@{/profissional/cadastrarProfissional}"
-				th:object="${profissional}" method="post">
-				<div class="row">
-				
-				<fieldset >
-				<legend>Professor</legend>
-					<div class="form-group col-md-6">
-						<label for="exampleInputName2">Name</label> <input type="text"
-							th:field="${profissional.nome}" class="form-control"
-							id="exampleInputName2" placeholder="Jane Doe">
+			<fieldset>
+				<legend>Dados Professor</legend>
+				<form class="form-inline"
+					th:action="@{/profissional/cadastrarProfissional}"
+					th:object="${profissional}" method="post" th:method="POST">
+					<div class="row">
+
+						<fieldset>
+							<legend>Professor</legend>
+							<div class="form-group col-md-6">
+								<label for="exampleInputName2">Name*</label> <input type="text"
+									th:field="${profissional.nome}" class="form-control"
+									id="exampleInputName2" placeholder="Jane Doe" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="cpf">CPF*</label> <input type="text"
+									th:field="${profissional.cpf}" class="form-control" id="cpf"
+									placeholder="999999999" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="email">Email*</label> <input type="email"
+									th:field="${profissional.email}" class="form-control"
+									id="email" placeholder="seunome@email.com" required>
+							</div>
+
+						</fieldset>
 					</div>
-					<div class="form-group col-md-6">
-						<label for="cpf">CPF</label> <input type="text"
-							th:field="${profissional.cpf}" class="form-control" id="cpf"
-							placeholder="999999999">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="email">Email</label> <input type="email"
-							th:field="${profissional.email}" class="form-control" id="email"
-							placeholder="seunome@email.com">
-					</div>
-					
-				</fieldset>
-				</div>
-			</form>
-			
-			<form class="form-inline" th:action="@{/profissional/cadastrarProfissional}"
-				th:object="${profissional}" method="post">
-				<fieldset >
-				<legend>Telefone</legend>
-				<div class="row">
-				<div class="form-group col-md-6">
-					<label for="ddd">DDD</label> <input type="text"
-						th:field="${profissional.ddd}" class="form-control" id="ddd"
-						placeholder="Ex. 43">
-				</div>
-				<div class="form-group col-md-6">
-					<label for="telefone">Telefone</label> <input type="tel"
-						th:field="${profissional.numeroTel}" class="form-control" id="telefone"
-						placeholder="Ex. 989899898">
-				</div>
-				</div>
-				</fieldset>
-			</form>
-		
-			<form class="form-inline" th:action="@{/profissional/cadastrarProfissional}"
-				th:object="${profissional}" method="post">
-				<fieldset >
-				<legend>Endereco</legend>
-				<div class="row">
-				
-				<div class="form-group col-md-4">
-					<label for="logradouro">Logradouro</label> <input type="text"
-						th:field="${profissional.logradouro}" class="form-control" id="logradouro"
-						placeholder="Rua Exemplo">
-				</div>
-				<div class="form-group col-md-4">
-					<label for="numero">Numero</label> <input type="number"
-						th:field="${profissional.numeroEnd}" class="form-control" id="numero"
-						placeholder="Ex. 123">
-				</div>
-				<div class="form-group col-md-4">
-					<label for="complemento">Complemento</label> <input type="text"
-						th:field="${profissional.complemento}" class="form-control" id="complemento"
-						placeholder="apto 1234">
-				</div>
-				<div class="form-group col-md-4">
-					<label for="bairro">Bairro</label> <input type="text"
-						th:field="${profissional.bairro}" class="form-control" id="bairro"
-						placeholder="Jd. Exemplo">
-				</div>
-				<div class="form-group col-md-4">
-					<label for="cep">CEP</label> <input type="text"
-						th:field="${profissional.cep}" class="form-control" id="cep"
-						placeholder="86090000">
-				</div>
-				
-			</div>
+
+					<fieldset>
+						<legend>Telefone</legend>
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="ddd">DDD</label> <input type="text"
+									th:field="${profissional.ddd}" class="form-control" id="ddd"
+									placeholder="Ex. 43">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="telefone">Telefone*</label> <input type="tel"
+									th:field="${profissional.numeroTel}" class="form-control"
+									id="telefone" placeholder="Ex. 989899898" required>
+							</div>
+						</div>
+					</fieldset>
+
+					<fieldset>
+						<legend>Endereco</legend>
+						<div class="row">
+
+							<div class="form-group col-md-4">
+								<label for="logradouro">Logradouro*</label> <input type="text"
+									th:field="${profissional.logradouro}" class="form-control"
+									id="logradouro" placeholder="Rua Exemplo" required>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="numero">Numero*</label> <input type="number"
+									th:field="${profissional.numeroEnd}" class="form-control"
+									id="numero" placeholder="Ex. 123" required>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="complemento">Complemento</label> <input type="text"
+									th:field="${profissional.complemento}" class="form-control"
+									id="complemento" placeholder="apto 1234">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="bairro">Bairro*</label> <input type="text"
+									th:field="${profissional.bairro}" class="form-control"
+									id="bairro" placeholder="Jd. Exemplo" required>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="cep">CEP*</label> <input type="text"
+									th:field="${profissional.cep}" class="form-control" id="cep"
+									placeholder="86090000" required>
+							</div>
+							<div class="row">
+								<div class="col-md-10"></div>
+								<div class="col-md-2">
+									<button type="submit" class="btn btn-primary">Cadastrar</button>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
 			</fieldset>
-			</form>
-		</fieldset>
-		<div class="row">
-			<div class="col-md-10"></div>
-			<div class="col-md-2">
-				<button type="submit" class="btn btn-primary">Cadastrar</button>
-			</div>
+
 		</div>
-		</div>
-		
-		
-	
+
+
+
 
 	</section>
 	<footer> Desenvolvido pelo Grupo 6 - Delta UP! </footer>

@@ -45,7 +45,7 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		/*Endereco end2 = new Endereco(null, null, null, null, null, null);
+		Endereco end2 = new Endereco(null, null, null, null, null, null);
 		Endereco end3 = new Endereco(null, "Rua Doutor Mário Campos", "1500", null, "Parigot de Souza 2", "86082360");
 		
 		Telefone tel2 = new Telefone(null, "43", "996295333");
@@ -82,8 +82,8 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 		enderecoRepository.saveAll(Arrays.asList(end1, end4));
 		telefoneRepository.saveAll(Arrays.asList(tel1,tel4));
 		
-		Cliente cli1 = new Cliente(null, "Alisson", 'M',"35447310881", end1, tel1);
-		Cliente cli2 = new Cliente(null, "Willian", 'M',"56242986094", end4, tel4);
+		Cliente cli1 = new Cliente(null,"alisson@gmail.com", "Alisson", "M","35447310881", end1, tel1);
+		Cliente cli2 = new Cliente(null,"willian@gmail.com", "Willian", "M","56242986094",  end4, tel4);
 		
 		end1.getClientes().addAll(Arrays.asList(cli1));
 		end4.getClientes().addAll(Arrays.asList(cli2));
@@ -95,9 +95,9 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 		SimpleDateFormat fd = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat ft = new SimpleDateFormat("HH:mm");
 		
-		Agendamento agend1 = new Agendamento(null, Semanas.SEGUNDA_FEIRA.getCod(), fd.parse("13/03/2018"), ft.parse("15:50"), pro1, cli1);
-		Agendamento agend2 = new Agendamento(null, Semanas.SEGUNDA_FEIRA.getCod(), fd.parse("13/03/2018"), ft.parse("15:50"), pro2, cli2);
-		Agendamento agend3 = new Agendamento(null, Semanas.TERCA_FEIRA.getCod(), fd.parse("15/03/2018"), ft.parse("18:50"), pro2, cli2);
+		Agendamento agend1 = new Agendamento(null, Semanas.SEGUNDA_FEIRA.getCod(), fd.parse("13/03/2018"), ft.parse("15:50"), pro1, cli1, serv1);
+		Agendamento agend2 = new Agendamento(null, Semanas.SEGUNDA_FEIRA.getCod(), fd.parse("13/03/2018"), ft.parse("15:50"), pro2, cli2, serv2);
+		Agendamento agend3 = new Agendamento(null, Semanas.TERCA_FEIRA.getCod(), fd.parse("15/03/2018"), ft.parse("18:50"), pro2, cli2, serv2);
 		
 		pro1.getAgendamento().addAll(Arrays.asList(agend1));
 		pro2.getAgendamento().addAll(Arrays.asList(agend2, agend3));
@@ -106,7 +106,7 @@ public class ProjectDeltaApplication implements CommandLineRunner{
 
 		agendamentoRepository.saveAll(Arrays.asList(agend1, agend2, agend3));
 		profissionalRepository.saveAll(Arrays.asList(pro1, pro2));
-		clienteRepository.saveAll(Arrays.asList(cli1, cli2));*/
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
 		
 	}
 	

@@ -4,74 +4,135 @@
 
 <head>
 
-<title>Lista de Aluno</title>
+<title>Lista Alunos</title>
 
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 <!-- Font Icons -->
-    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
- 
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/css/estilo.css}" />
 
 </head>
 
 <body>
+	<header>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+
+				<div class="navbar-header">
+
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#" th:href="@{/home}">Bruna</a>
+				</div>
+				<div id="collapse-navbar bs-example-navbar-collapse-1"
+					class="collapse navbar-collapse">
+					<ul class="nav nav-pills nav-justified">
+						<li><a href="product/list.html"
+							th:href="@{/aluno/cadastrarAluno}">Cadastrar Aluno</a></li>
+
+						<li><a href="order/list.html" th:href="@{/aluno/listarAluno}">Listar
+								Aluno</a></li>
+
+						<li><a href="subscribe.html"
+							th:href="@{/profissional/cadastrarProfissional}">Cadastrar
+								Profissional</a></li>
+
+						<li><a href="userprofile.html"
+							th:href="@{/profissional/listarProfissional}">Listar
+								Profissionais</a></li>
+
+						<li><a href="userprofile.html"
+							th:href="@{/servico/cadastrarServico}">Cadastrar Servicos</a></li>
+
+						<li><a href="userprofile.html"
+							th:href="@{/servico/listarServico}">Listar Servicos</a></li>
+
+						<li><a href="userprofile.html"
+							th:href="@{/agendamento/cadastrarAgendamento}">Cadastrar
+								Agendamento</a></li>
 
 
-<div class="container">
+						<li><a href="userprofile.html"
+							th:href="@{/agendamento/listarAgendamento}">Listar
+								Agendamentos</a>
+						<li>
+					</ul>
+				</div>
+			</div>
 
-	<div class="well">
+		</nav>
+		<div class="conteudo-header "></div>
+	</header>
+	<section id="conteudo">
 
-		<h1>Lista de Cliente</h1>
+		<div class="container">
 
-		<div class="row">
+			<div class="well">
 
-			<div class="col-8">
+				<h1>Lista de Cliente</h1>
 
-				
+				<div class="row">
 
-				<table  class="table">
-				    <thead>
-				    <tr>
-				    	<th>ID</th>
-				    	<th>Nome</th>
-				    	<th>CPF</th>
-				    	<th>Numero</th>
-				    </tr>
-				    </thead>
-				    
-				    <tbody th:each="clientes : ${lista}">
-				    <tr>
-				    
-				    <td  th:text="${clientes.id}"></td>
-				    <td th:text="${clientes.nome}"></td>
-				    <td th:text="${clientes.cpf}"></td>
-				    <td th:text="${clientes.telefone.numero}"></td>
-				    
-				    <td th:button type="submit" class="btn btn-info">Editar</button></td>
-					<td th:button type="submit" class="btn btn-danger">Editar</button></td>
-					</tr>
-					</tbody>
-				</table>
-					
+					<div class="col-8">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Nome</th>
+									<th>E-mail</th>
+									<th>CPF</th>
+									<th>Numero</th>
+									<th>Ações</th>
+								</tr>
+							</thead>
+
+							<tbody th:each="clientes : ${lista}">
+								<tr>
+
+									<td th:text="${clientes.id}"></td>
+									<td th:text="${clientes.nome}"></td>
+									<td th:text="${clientes.email}"></td>
+									<td th:text="${clientes.cpf}"></td>
+									<td th:text="${clientes.telefone.numero}"></td>
+
+									<td th:button type="submit" class="btn btn-info">Editar
+										</button>
+									</td>
+									<td><a th:href="${'/aluno/listarAluno/' + clientes.id}">Excluir</a>
+										
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+
+				<a href="/home/index.html" th:href="@{http://localhost:8080/home}"><button
+						class="btn btn-primary">Home</button></a>
 			</div>
 
 		</div>
 
-			<a href="/home/index.html" th:href="@{http://localhost:8080/home}"><button
-					class="btn btn-primary">Home</button></a>
-		</div>
+	</section>
+	<footer> Desenvolvido pelo Grupo 6 - Delta UP! </footer>
 
-</div>
+	<script src="/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"></script>
+	<script src="/js/navbra-animation-fix.js"
+		th:href="@{/js/navbra-animation-fix.js}"></script>
+	<script src="/jquery/jquery.js" th:href="@{/jquery/jquery.js}"></script>
 
-
-
-
-
-
-
+	</script>
 </body>
 
 </html>

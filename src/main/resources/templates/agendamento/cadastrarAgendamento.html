@@ -77,16 +77,73 @@
 		<fieldset>
 			<legend>Dados Agendamento</legend>
 			
-					
-				</fieldset>
-			
-			
+			<form action="#" class="form-inline" th:action="@{/agendamento/cadastrarAgendamento}" th:object="${agendamento}" method="post">
+	 
+		 
+		
+		 <div class="row">
+		 	<div class="col-md-4 form-group">
+				<label>Semana:</label>
+				<select class="form-control" th:field="${agendamento.semana}">
+    				<option value="">Selecione o dia da semana</option>
+   					<option th:each="lista : ${semanas}" 
+   							th:value="${lista.cod}" 
+   							th:text="${lista.descricao}">
+   					</option>
+    			</select>
+			</div>
+		
+			<div class="col-md-4 form-group">
+				<label>Dia:</label>
+				<input type="text" class="form-control" th:field="${agendamento.dia}" />
+			</div>
+		
+			<div class="col-md-4 form-group">
+				<label>Horário:</label>
+				<input type="text" class="form-control" th:field="${agendamento.horario}" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-4 ">
+				<label>Profissional:</label>
+				<select class="form-control" th:field="${agendamento.idProf}">
+    				<option value="">Selecione o profissional</option>
+   					<option th:each="lista : ${listaProf}" 
+   							th:value="${lista.id}" 
+   							th:text="${lista.nome}">
+   					</option>
+    			</select>
+			</div>
+		
+			<div class="form-group col-md-4">
+				<label>Aluno:</label>
+				<select class="form-control" th:field="${agendamento.idClient}">
+    				<option value="">Selecione o profissional</option>
+   					<option th:each="lista : ${listClient}" 
+   							th:value="${lista.id}" 
+   							th:text="${lista.nome}">
+   					</option>
+    			</select>
+			</div>
+		</div>
+		
+		<br/>
+		
 		<div class="row">
 			<div class="col-md-10"></div>
 			<div class="col-md-2">
 				<button type="submit" class="btn btn-primary">Cadastrar</button>
 			</div>
 		</div>
+		 
+		 
+	 
+	</form>
+					
+				</fieldset>
+			
+			
+		
 		</div>
 		
 		

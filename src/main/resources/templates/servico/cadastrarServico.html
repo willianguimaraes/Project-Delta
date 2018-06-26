@@ -74,23 +74,50 @@
 	</header>
 	<section id="conteudo">
 		<div class="container">
-		<fieldset>
-			<legend>Dados Servico</legend>
-			
+			<fieldset>
+				<legend>Dados Servico</legend>
+
+				<form action="#" class="form-inline" th:action="@{/servico/cadastrarServico}"
+					th:object="${servico}" method="post" th:method="post">
+
 					
-				</fieldset>
-			
-			
-		<div class="row">
-			<div class="col-md-10"></div>
-			<div class="col-md-2">
-				<button type="submit" class="btn btn-primary">Cadastrar</button>
-			</div>
+						
+
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label>Nome do serviço:</label> <input type="text"
+									class="form-group" th:field="${servico.nome}" required/>
+							</div>
+							
+							<div class="form-group col-md-4">
+							<label>Profissional:</label>
+								<select  class="form-group" th:field="${servico.idProf}" required>
+									<option value="" disabled>Selecione o profissional</option>
+									<option th:each="lista : ${listaProf}" th:value="${lista.id}"
+										th:text="${lista.nome}"></option>
+								</select>
+							</div>
+													
+							<div class="form-group col-md-4">
+								<label>Descrição do serviço:</label>
+								<textarea class="form-group" th:field="${servico.descricao}" required/>
+							</div>
+						</div>
+							
+						
+						<div class="row">
+							<div class="col-md-10"></div>
+							<div class="col-md-2">
+								<button type="submit" class="btn btn-primary">Cadastrar</button>
+							</div>
+						</div>
+
+					
+
+				</form>
+			</fieldset>
+
 		</div>
-		</div>
-		
-		
-	
 
 	</section>
 	<footer> Desenvolvido pelo Grupo 6 - Delta UP! </footer>
@@ -99,6 +126,4 @@
 	<script src="/js/navbra-animation-fix.js"
 		th:href="@{/js/navbra-animation-fix.js}"></script>
 	<script src="/jquery/jquery.js" th:href="@{/jquery/jquery.js}"></script>
-
-	
 </html>

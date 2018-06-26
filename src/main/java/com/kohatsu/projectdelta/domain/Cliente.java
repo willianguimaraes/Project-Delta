@@ -77,7 +77,7 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 	}
 	public String getEmail() {
-		return nome;
+		return email;
 	}
 	
 

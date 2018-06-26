@@ -74,7 +74,7 @@ public class AgendamentoNewDTO implements Serializable{
 		this.idClient = idClient;
 	}
 	public Integer getIdServico() {
-		return idClient;
+		return idServico;
 	}
 
 	public void setIdServico(Integer idServico) {

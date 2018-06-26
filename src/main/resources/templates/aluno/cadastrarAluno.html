@@ -77,70 +77,64 @@
 		<fieldset>
 			<legend>Dados Aluno</legend>
 			<form class="form-inline" th:action="@{/aluno/cadastrarAluno}"
-				th:object="${aluno}" method="post">
+				th:object="${aluno}" method="post" th:method="POST" >
 				<div class="row">
 				
 				<fieldset >
 				<legend>Aluno</legend>
 					<div class="form-group col-md-6">
-						<label for="exampleInputName2">Name</label> <input type="text"
+						<label for="exampleInputName2">Name*</label> <input type="text"
 							th:field="${aluno.nome}" class="form-control"
-							id="exampleInputName2" placeholder="Jane Doe">
+							id="exampleInputName2" autocomplete="name" required placeholder="Jane Doe">
 					</div>
 					<div class="form-group col-md-6">
-						<label for="cpf">CPF</label> <input type="text"
+						<label for="cpf">CPF*</label> <input type="text"
 							th:field="${aluno.cpf}" class="form-control" id="cpf"
-							placeholder="999999999">
+							placeholder="999999999" required >
 					</div>
 					<div class="form-group col-md-6">
-						<label for="sexo">Sexo</label> <input type="text"
+						<label for="sexo">Sexo*</label> <input type="text"
 							th:field="${aluno.sexo}" class="form-control" id=sexo
-							placeholder="Masculino / Feminino">
+							placeholder="Masculino / Feminino" required>
 					</div>
 					<div class="form-group col-md-6">
-						<label for="email">Email</label> <input type="email"
+						<label for="email">Email*</label> <input type="email"
 							th:field="${aluno.email}" class="form-control" id="email"
-							placeholder="seunome@email.com">
+							placeholder="seunome@email.com" autocomplete="name" required>
 					</div>
 					
 				</fieldset>
 				</div>
-			</form>
 			
-			<form class="form-inline" th:action="@{/aluno/cadastrarAluno}"
-				th:object="${aluno}" method="post">
 				<fieldset >
 				<legend>Telefone</legend>
 				<div class="row">
 				<div class="form-group col-md-6">
 					<label for="ddd">DDD</label> <input type="text"
 						th:field="${aluno.ddd}" class="form-control" id="ddd"
-						placeholder="Ex. 43">
+						placeholder="Ex. 43" autocomplete='tel-area-code'>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="telefone">Telefone</label> <input type="tel"
+					<label for="telefone">Telefone*</label> <input type="tel"
 						th:field="${aluno.numeroTel}" class="form-control" id="telefone"
-						placeholder="Ex. 989899898">
+						placeholder="Ex. 989899898" autocomplete='tel' required>
 				</div>
 				</div>
 				</fieldset>
-			</form>
-		
-			<form class="form-inline" th:action="@{/aluno/cadastrarAluno}"
-				th:object="${aluno}" method="post">
+			
 				<fieldset >
 				<legend>Endereco</legend>
 				<div class="row">
 				
 				<div class="form-group col-md-4">
-					<label for="logradouro">Logradouro</label> <input type="text"
+					<label for="logradouro">Logradouro*</label> <input type="text"
 						th:field="${aluno.logradouro}" class="form-control" id="logradouro"
-						placeholder="Rua Exemplo">
+						placeholder="Rua Exemplo" autocomplete='street-address' required>
 				</div>
 				<div class="form-group col-md-4">
-					<label for="numero">Numero</label> <input type="number"
+					<label for="numero">Numero*</label> <input type="number"
 						th:field="${aluno.numeroEnd}" class="form-control" id="numero"
-						placeholder="Ex. 123">
+						placeholder="Ex. 123"required>
 				</div>
 				<div class="form-group col-md-4">
 					<label for="complemento">Complemento</label> <input type="text"
@@ -148,26 +142,26 @@
 						placeholder="apto 1234">
 				</div>
 				<div class="form-group col-md-4">
-					<label for="bairro">Bairro</label> <input type="text"
+					<label for="bairro">Bairro*</label> <input type="text"
 						th:field="${aluno.bairro}" class="form-control" id="bairro"
-						placeholder="Jd. Exemplo">
+						placeholder="Jd. Exemplo"required>
 				</div>
 				<div class="form-group col-md-4">
-					<label for="cep">CEP</label> <input type="text"
+					<label for="cep">CEP*</label> <input type="text"
 						th:field="${aluno.cep}" class="form-control" id="cep"
-						placeholder="86090000">
+						placeholder="86090000" autocomplete='postal-code' required>
 				</div>
-				
+				<div class="row">
+					<div class="col-md-10"></div>
+					<div class="col-md-2">
+						<button type="submit" class="btn btn-primary">Cadastrar</button>
+					</div>
+				</div>
 			</div>
 			</fieldset>
 			</form>
 		</fieldset>
-		<div class="row">
-			<div class="col-md-10"></div>
-			<div class="col-md-2">
-				<button type="submit" class="btn btn-primary">Cadastrar</button>
-			</div>
-		</div>
+		
 		</div>
 		
 		

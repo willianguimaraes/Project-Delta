@@ -1,5 +1,6 @@
 package com.kohatsu.projectdelta.resources;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,8 +20,11 @@ import com.kohatsu.projectdelta.domain.Agendamento;
 import com.kohatsu.projectdelta.domain.Cliente;
 import com.kohatsu.projectdelta.domain.Profissional;
 import com.kohatsu.projectdelta.domain.Servico;
+import com.kohatsu.projectdelta.domain.enums.Semanas;
+import com.kohatsu.projectdelta.dto.AgendamentoNewDTO;
 import com.kohatsu.projectdelta.dto.ClienteNewDTO;
 import com.kohatsu.projectdelta.dto.ProfissionalNewDTO;
+import com.kohatsu.projectdelta.dto.ServicoNewDTO;
 import com.kohatsu.projectdelta.services.AgendamentoService;
 import com.kohatsu.projectdelta.services.ClienteService;
 import com.kohatsu.projectdelta.services.ProfissionalService;
@@ -69,6 +73,39 @@ public class PaginacaoResource {
 		return mv;
 		
 	}
+	
+	@RequestMapping(value="/servico/cadastrarServico")
+	public ModelAndView formServico(ModelAndView mv) {
+		
+		List<Profissional> list = profissionalService.findAll();
+		
+		mv.addObject("servico", new ServicoNewDTO());
+		mv.addObject("listaProf", list);
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping(value="/agendamento/cadastrarAgendamento")
+	public ModelAndView formAgendamento(ModelAndView mv) {
+		
+		List<Semanas> list = Arrays.asList(Semanas.values());
+		List<Profissional> listProf = profissionalService.findAll();
+		List<Cliente> listClient = service.findAll();
+/*		String dia = "";
+		String horario = "";*/
+		
+		mv.addObject("semanas", list);
+		mv.addObject("listaProf", listProf);
+		mv.addObject("listClient", listClient);
+		mv.addObject("agendamento", new AgendamentoNewDTO());
+/*		mv.addObject("dia", dia);
+		mv.addObject("horario", horario);*/
+		
+		return mv;
+		
+	}
+
 	
 	//Listar registro no banco de dados
 	@RequestMapping(value="/aluno/listarAluno", method=RequestMethod.GET)
@@ -143,5 +180,73 @@ public class PaginacaoResource {
 		return listarProfissional();
 		
 	}
+	
+	@RequestMapping(value="/servico/cadastrarServico", method=RequestMethod.POST)
+	public ModelAndView insert(@ModelAttribute ServicoNewDTO objDto) {
+		
+		Servico obj = servicoService.fromDTO(objDto);
+		servicoService.insert(obj);
+		
+		return listarServico();
+		
+	}
+	
+	@RequestMapping(value="/agendamento/cadastrarAgendamento", method=RequestMethod.POST)
+	public ModelAndView insert(@ModelAttribute AgendamentoNewDTO objDto) {
+		
+		/*System.out.println(dia);
+		System.out.println(horario);
+		
+		SimpleDateFormat fd = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat fh = new SimpleDateFormat("HH:mm");
+		Date objDate = fd.parse(dia);
+		Date objHor = fh.parse(horario);
+		objDto.setDia(objDate);
+		objDto.setHorario(objHor);*/
+		
+		Agendamento obj = agendamentoService.fromDTO(objDto);
+		agendamentoService.insert(obj);
+		
+		return listarAgendamento();
+		
+	}
+	
+	
+	//deletando os registro
+		@RequestMapping(value="/aluno/listarAluno/{id}")
+		public ModelAndView deleteCliente(@PathVariable(value="id") Integer id) {
+			
+			service.delete(id);
+			
+			return listarAluno();
+			
+		}
+		
+		@RequestMapping(value="/profissional/listarProfissional/{id}")
+			public ModelAndView deleteProfissional(@PathVariable(value="id") Integer id) {
+				
+				profissionalService.delete(id);
+				
+				return listarProfissional();
+				
+			}
+		
+		@RequestMapping(value="/agendamento/listarAgendamento/{id}")
+			public ModelAndView deleteAgendamento(@PathVariable(value="id") Integer id) {
+				
+				agendamentoService.delete(id);
+				
+				return listarAgendamento();
+				
+			}
+		
+		@RequestMapping(value="/servico/listarServico/{id}")
+			public ModelAndView deleteServico(@PathVariable(value="id") Integer id) {
+				
+				servicoService.delete(id);
+				
+				return listarServico();
+				
+			}
 	
 }

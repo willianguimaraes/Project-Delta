@@ -50,7 +50,7 @@ public class ClienteNewDTO implements Serializable{
 		this.sexo = sexo;
 	}
 	public String getEmail() {
-		return sexo;
+		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
